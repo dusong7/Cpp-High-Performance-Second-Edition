@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "arena.hpp"
+#include "arena.h"
 #include <memory>
 
 auto&& user_arena = Arena<1024>{}; // [auto&& is needed in current version of MSVC]

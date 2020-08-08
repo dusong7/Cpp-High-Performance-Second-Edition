@@ -52,7 +52,8 @@ include_directories ("ThirdParty/include"
 
 
 add_subdirectory ("Chapter01")
-# add_subdirectory ("Chapter02")
+add_subdirectory ("Chapter02")
+add_subdirectory ("Chapter02/benchmarking")
 add_subdirectory ("Chapter03")
 add_subdirectory ("Chapter03/benchmarking")
 add_subdirectory ("Chapter04")
@@ -67,9 +68,8 @@ add_subdirectory ("Chapter07")
 
 enable_testing ()
 add_test (NAME Chapter01-A_Brief_Introduction_to_C++ COMMAND Chapter01-A_Brief_Introduction_to_C++)
-# add_test (NAME Chapter02-Modern_CPP_Concepts COMMAND Chapter02-Modern_CPP_Concepts)
-
-
+add_test (NAME Chapter02-Essential_CPP_Techniques COMMAND Chapter02-Essential_CPP_Techniques)
+#add_test (NAME Chapter02-Essential_CPP_Techniques_Benchmarking COMMAND Chapter02-Essential_CPP_Techniques_Benchmarking)
 add_test (NAME Chapter03-Measuring_Performance COMMAND Chapter03-Measuring_Performance)
 add_test (NAME Chapter03-Measuring_Performance_Benchmarking COMMAND Chapter03-Measuring_Performance_Benchmarking)
 add_test (NAME Chapter04-Data_Structures COMMAND Chapter04-Data_Structures)

@@ -5,14 +5,13 @@
 #include <vector>
 
 auto binary_search(const std::vector<int>& a, int key) {
-  if (a.empty()) {
-    return false;
-  }
-  auto low = size_t(0);
-  auto high = a.size() - 1;
+  // Ensure our cast below is safe
+  assert(a.size() < std::numeric_limits<int>::max()); 
+
+  auto low = 0;
+  auto high = static_cast<int>(a.size()) - 1;
   while (low <= high) {
     const auto mid = std::midpoint(low, high);    // C++20
-    // const auto mid = low + ((high - low) / 2); // If no C++20 support
     if (a[mid] < key) {
       low = mid + 1;
     } else if (a[mid] > key) {
@@ -30,7 +29,15 @@ TEST(BinarySearch, FindNumber) {
   ASSERT_TRUE(found);
   found = binary_search(a, 4);
   ASSERT_TRUE(found);
+  found = binary_search({1}, 1);
+  ASSERT_TRUE(found);
 
+  found = binary_search({}, 10);
+  ASSERT_FALSE(found);
+  found = binary_search({1}, 0);
+  ASSERT_FALSE(found);
+  found = binary_search({1}, 2);
+  ASSERT_FALSE(found);
   found = binary_search(a, 10);
   ASSERT_FALSE(found);
   found = binary_search(a, 0);

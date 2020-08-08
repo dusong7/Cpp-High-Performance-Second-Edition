@@ -1,3 +1,4 @@
+#if 0
 #include <array>
 #include <iostream>
 #include <memory_resource>
@@ -61,3 +62,4 @@ TEST(PolymorphicMemoryAllocators, CustomMemoryResource) {
   vec.emplace_back(1);
   vec.emplace_back(2);
 }
+#endif

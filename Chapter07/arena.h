@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ARENA_HPP
-#define ARENA_HPP
 
 template <size_t N> class Arena {
 
@@ -22,7 +20,8 @@ private:
     return (n + (alignment - 1)) & ~(alignment - 1);
   }
   auto pointer_in_buffer(const char* p) const noexcept -> bool {
-    return buffer_ <= p && p <= buffer_ + N;
+    return std::uintptr_t(buffer_) <= std::uintptr_t(p) &&
+           std::uintptr_t(p) < std::uintptr_t(buffer_) + N;
   }
   alignas(alignment) char buffer_[N];
   char* ptr_{};
@@ -51,5 +50,3 @@ auto Arena<N>::deallocate(char* p, size_t n) noexcept -> void {
     ::operator delete(p);
   }
 }
-
-#endif

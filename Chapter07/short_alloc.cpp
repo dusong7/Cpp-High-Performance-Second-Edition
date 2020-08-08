@@ -1,7 +1,7 @@
 #include <iostream>
 #include <set>
 #include <gtest/gtest.h>
-#include "arena.hpp"
+#include "arena.h"
 
 
 template <class T, size_t N>
