@@ -7,16 +7,6 @@
 #include <complex>
 #include <utility>
 
-struct S{
-int a;
-int b;
-int c;
-int d;
-int e;
-int f;
-};
-static_assert(std::atomic<S>::is_always_lock_free());
-
 namespace {
 
 int divide(int a, int b) {

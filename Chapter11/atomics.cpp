@@ -1,5 +1,5 @@
 // Compile using GCC: g++ -std=c++2a -O3 -lpthread -Wall
-
+#if defined(__cpp_lib_atomic_ref)
 #include <atomic>
 #include <gtest/gtest.h>
 #include <iostream>
@@ -132,3 +132,5 @@ TEST(Atomics, AtomicReferences) {
 }
 
 } // namespace AtomicReferences
+
+#endif 

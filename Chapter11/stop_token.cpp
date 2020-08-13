@@ -1,4 +1,4 @@
-#if 0 // Requries C++20
+#if defined(__cpp_lib_jthread)
 #include <iostream>
 #include <jthread>
 #include <gtest/gtest.h>
@@ -19,4 +19,4 @@ TEST(StopToken, BasicExample) {
   std::cout << "main: request jthread to stop\n";
   joinable_thread.request_stop();                                                                                                                                                                         
 }
-#endif // 0
+#endif 

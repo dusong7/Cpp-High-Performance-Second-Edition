@@ -1,4 +1,4 @@
-#if 0 // Requries C++20
+#if defined(__cpp_lib_jthread)
 #include <iostream>
 #include <jthread>
 #include <gtest/gtest.h>
@@ -13,4 +13,4 @@ TEST(JoinableThread, ToConsole) {
   auto joinable_thread = std::jthread{print};  
   std::cout << "main end\n";
 } // OK: jthread will join automatically 
-#endif // 0
+#endif

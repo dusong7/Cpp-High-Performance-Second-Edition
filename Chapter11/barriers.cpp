@@ -1,3 +1,5 @@
+#if defined(__cpp_lib_barrier)
+
 #include <algorithm>
 #include <array>
 #include <barrier>
@@ -44,3 +46,4 @@ TEST(Barriers, ForkJoin) {
   }
   std::cout << n_turns << '\n';
 }
+#endif 

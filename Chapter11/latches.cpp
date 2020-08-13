@@ -1,5 +1,8 @@
 // Compile using clang (trunk) with:
 // -std=c++2a -Wall -stdlib=libc++ -O3 -lpthread
+#if defined(__cpp_lib_latch)
+
+
 #include <array>
 #include <chrono>
 #include <iostream>
@@ -35,3 +38,5 @@ TEST(Latches, PrefaultStack) {
     t.join();
   }
 }
+
+#endif 

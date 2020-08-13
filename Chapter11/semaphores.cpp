@@ -1,3 +1,5 @@
+#if defined(__cpp_lib_semaphore)
+
 #include <array>
 #include <gtest/gtest.h>
 #include <iostream>
@@ -83,3 +85,5 @@ TEST(Semaphores, BoundedBuffer) {
   producer.join();
   consumer.join();
 }
+
+#endif
