@@ -18,7 +18,6 @@ bool is_aligned(void* ptr, std::size_t alignment) {
 // which means that it is also correctly aligned for any scalar type
 TEST(Alignment, PointerAddress) {
   auto* p = new char{};
-  auto address = reinterpret_cast<std::uintptr_t>(p);
   auto max_alignment = alignof(std::max_align_t);
   ASSERT_TRUE(is_aligned(p, max_alignment));
 }
