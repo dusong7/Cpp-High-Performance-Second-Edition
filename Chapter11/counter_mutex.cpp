@@ -20,14 +20,14 @@ void increment_counter(int n) {
 } // namespace
 
 TEST(CounterMutex, IncrementCounter) {
-  const int n_times = 1000000;
-  std::thread t1(increment_counter, n_times);
-  std::thread t2(increment_counter, n_times);
+  const int n = 1000000;
+  std::thread t1(increment_counter, n);
+  std::thread t2(increment_counter, n);
 
   t1.join(); // Or use std::jthread
   t2.join();
 
   std::cout << counter << '\n';
   // If we don't have a data race, this assert should hold:
-  ASSERT_EQ(n_times * 2, counter);
+  ASSERT_EQ(n * 2, counter);
 }

@@ -1,3 +1,4 @@
+#include <version>
 #if defined(__cpp_lib_barrier)
 
 #include <algorithm>
@@ -41,7 +42,7 @@ TEST(Barriers, ForkJoin) {
       }
     });
   }
-  for (auto&& t : threads) { // Use jthread instead
+  for (auto&& t : threads) {
     t.join();
   }
   std::cout << n_turns << '\n';

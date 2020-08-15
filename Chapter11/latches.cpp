@@ -1,5 +1,6 @@
 // Compile using clang (trunk) with:
 // -std=c++2a -Wall -stdlib=libc++ -O3 -lpthread
+#include <version>
 #if defined(__cpp_lib_latch)
 
 

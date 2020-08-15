@@ -12,6 +12,6 @@ add_executable (${PROJECT_NAME}
   ${CHAPTER_SRC_FILES}
   )
 
-target_link_libraries (${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}
   GTest::gtest
   )

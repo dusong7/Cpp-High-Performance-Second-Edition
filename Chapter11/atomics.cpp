@@ -1,10 +1,11 @@
-// Compile using GCC: g++ -std=c++2a -O3 -lpthread -Wall
-#if defined(__cpp_lib_atomic_ref)
+// No compiler support yet
+#include <version>
+#if defined(__cpp_lib_atomic_wait) &&  defined(__cpp_lib_atomic_flag_test)
 #include <atomic>
 #include <gtest/gtest.h>
 #include <iostream>
-#include <thread>
 #include <random>
+#include <thread>
 
 namespace SpinLock {
 
@@ -13,8 +14,8 @@ class SimpleMutex {
 public:
   auto lock() noexcept {
     while (is_locked.test_and_set()) {
-      while (is_locked.test())
-        ; // Spin here
+      while (is_locked.test()) // C++20
+        ;                      // Spin here
     }
   }
   auto unlock() noexcept { is_locked.clear(); }
@@ -42,7 +43,7 @@ TEST(Atomics, SimpleSpinLock) {
 
   std::cout << counter << '\n';
   // If we don't have a data race, this assert should hold:
-  ASSERT_EQ(n_times * 2, counter);
+  ASSERT_EQ(n * 2, counter);
 }
 
 } // namespace SpinLock
@@ -80,57 +81,14 @@ TEST(Atomics, WaitAndNotify) {
 
   auto t1 = std::thread{increment_counter};
   auto t2 = std::thread{increment_counter};
-
-  t1.join(); // Or use std::jthread
+  t1.join();
   t2.join();
 
   std::cout << counter << '\n';
   // If we don't have a data race, this assert should hold:
-  ASSERT_EQ(n_times * 2, counter);
+  ASSERT_EQ(n * 2, counter);
 }
 
 } // namespace WaitAndNotify
 
-namespace AtomicReferences {
-
-auto random_int(int min, int max) {
-  // One engine instance per thread
-  thread_local static auto engine =
-      std::default_random_engine{std::random_device{}()};
-
-  auto dist = std::uniform_int_distribution<>{min, max};
-  return dist(engine);
-}
-
-struct Stats {
-  int heads{};
-  int tails{};
-};
-
-std::ostream& operator<<(std::ostream& os, const Stats& s) {
-  os << "heads: " << s.heads << ", tails: " << s.tails;
-  return os;
-}
-
-void filp_coin(std::size_t n, Stats& outcomes) {
-  auto flip = [&outcomes](auto n) {
-    auto heads = std::atomic_ref<int>{outcomes.heads};
-    auto tails = std::atomic_ref<int>{outcomes.tails};
-    for (auto i = 0u; i < n; ++i) {
-      random_int(0, 1) == 0 ? ++heads : ++tails;
-    }
-  };
-  auto t1 = std::jthread{flip, n / 2};       // First half
-  auto t2 = std::jthread{flip, n - (n / 2)}; // The rest
-}
-
-TEST(Atomics, AtomicReferences) {
-  auto stats = Stats{};
-  filp_coin(5000, stats); // Flip 5000 times
-  std::cout << stats << '\n';
-  ASSERT_EQ(5000, (stats.tails + stats.heads));
-}
-
-} // namespace AtomicReferences
-
-#endif 
+#endif
