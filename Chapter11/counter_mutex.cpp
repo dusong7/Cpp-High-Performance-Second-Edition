@@ -1,21 +1,20 @@
 #include <cassert>
-#include <iostream>
-#include <thread>
-#include <mutex>
 #include <gtest/gtest.h>
+#include <iostream>
+#include <mutex>
+#include <thread>
 
 namespace {
 
 int counter = 0; // Counter will be protected by mutex
 std::mutex counter_mutex;
 
-void increment_counter(int n) { 
-  for (int i = 0; i < n; ++i) { 
-    auto lock = std::scoped_lock{counter_mutex}; 
-    ++counter; 
-  } 
-} 
-
+void increment_counter(int n) {
+  for (int i = 0; i < n; ++i) {
+    auto lock = std::scoped_lock{counter_mutex};
+    ++counter;
+  }
+}
 
 } // namespace
 

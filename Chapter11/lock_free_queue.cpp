@@ -12,7 +12,7 @@ template <class T, size_t N> class LockFreeQueue {
   size_t write_pos_{0};         // Used by writer thread
   static_assert(std::atomic<size_t>::is_always_lock_free);
 
-  bool do_push(auto &&t) {
+  bool do_push(auto&& t) {
     if (size_.load() == N) {
       return false;
     }
@@ -24,11 +24,11 @@ template <class T, size_t N> class LockFreeQueue {
 
 public:
   // Writer thread
-  bool push(T &&t) { return do_push(std::move(t)); }
-  bool push(const T &t) { return do_push(t); }
+  bool push(T&& t) { return do_push(std::move(t)); }
+  bool push(const T& t) { return do_push(t); }
 
   // Reader thread
-  bool pop(T &value) {
+  bool pop(T& value) {
     if (size_.load() == 0) {
       return false;
     }

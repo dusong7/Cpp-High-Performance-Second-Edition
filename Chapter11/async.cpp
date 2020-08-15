@@ -1,7 +1,7 @@
-#include <thread>
 #include <future>
-#include <iostream>
 #include <gtest/gtest.h>
+#include <iostream>
+#include <thread>
 
 #include <atomic>
 #include <complex>
@@ -21,8 +21,6 @@ int divide(int a, int b) {
 TEST(Async, Divide) {
   auto f = std::async(divide, 45, 5);
   auto result = int{0};
-  ASSERT_NO_THROW({
-    result = f.get();
-  });
-  ASSERT_EQ(45/5, result);
+  ASSERT_NO_THROW({ result = f.get(); });
+  ASSERT_EQ(45 / 5, result);
 }
