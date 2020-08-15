@@ -4,12 +4,12 @@
 #include <algorithm>
 #include <array>
 #include <barrier>
+#include <gtest/gtest.h>
 #include <iostream>
 #include <numeric>
 #include <random>
 #include <thread>
 #include <vector>
-#include <gtest/gtest.h>
 
 auto random_int(int min, int max) {
   // One engine instance per thread
@@ -47,4 +47,4 @@ TEST(Barriers, ForkJoin) {
   }
   std::cout << n_turns << '\n';
 }
-#endif 
+#endif

@@ -20,7 +20,7 @@ template <class T, int N> class BoundedBuffer {
   std::counting_semaphore<N> n_empty_slots_{N}; // New
   std::counting_semaphore<N> n_full_slots_{0};  // New
 
-  void do_push(auto &&item) {
+  void do_push(auto&& item) {
     // Take one of the empty slots (might block)
     n_empty_slots_.acquire(); // New
     try {
@@ -36,8 +36,8 @@ template <class T, int N> class BoundedBuffer {
   }
 
 public:
-  void push(const T &item) { do_push(item); }
-  void push(T &&item) { do_push(std::move(item)); }
+  void push(const T& item) { do_push(item); }
+  void push(T&& item) { do_push(std::move(item)); }
 
   auto pop() {
     // Take one of the full slots (might block)

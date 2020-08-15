@@ -1,11 +1,10 @@
 #if defined(__cpp_lib_jthread)
+#include <gtest/gtest.h>
 #include <iostream>
 #include <jthread>
-#include <gtest/gtest.h>
-
 
 void print(std::stop_token stoken) {
-  while (!stoken.stop_requested()) { 
+  while (!stoken.stop_requested()) {
     std::cout << std::this_thread::get_id() << '\n';
     std::this_thread::sleep_for(std::chrono::seconds{1});
   }
@@ -17,6 +16,6 @@ TEST(StopToken, BasicExample) {
   std::cout << "main: goes to sleep\n";
   std::this_thread::sleep_for(std::chrono::seconds{5});
   std::cout << "main: request jthread to stop\n";
-  joinable_thread.request_stop();                                                                                                                                                                         
+  joinable_thread.request_stop();
 }
-#endif 
+#endif

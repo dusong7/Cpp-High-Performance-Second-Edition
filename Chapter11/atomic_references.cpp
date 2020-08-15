@@ -4,8 +4,8 @@
 #include <atomic>
 #include <gtest/gtest.h>
 #include <iostream>
-#include <thread>
 #include <random>
+#include <thread>
 
 namespace {
 
@@ -49,4 +49,4 @@ TEST(Atomics, AtomicReferences) {
 
 } // namespace
 
-#endif 
+#endif

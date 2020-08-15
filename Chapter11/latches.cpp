@@ -3,24 +3,22 @@
 #include <version>
 #if defined(__cpp_lib_latch)
 
-
 #include <array>
 #include <chrono>
+#include <gtest/gtest.h>
 #include <iostream>
 #include <latch>
 #include <thread>
 #include <vector>
-#include <gtest/gtest.h>
 
 void prefault_stack() {
-  constexpr auto stack_size = 500u * 1024u; // We don't know the size of the stack
-  volatile unsigned char
-      mem[stack_size]; // Make volatile to avoid optimization
+  constexpr auto stack_size =
+      500u * 1024u;                       // We don't know the size of the stack
+  volatile unsigned char mem[stack_size]; // Make volatile to avoid optimization
   std::fill(std::begin(mem), std::end(mem), 0);
 }
 
 void do_work() { std::cout << "Thread is working\n"; }
-
 
 TEST(Latches, PrefaultStack) {
   constexpr auto n_threads = 2;
@@ -35,9 +33,9 @@ TEST(Latches, PrefaultStack) {
   }
   initialized.wait();
   std::cout << "Threads have been initialized, starting to work\n";
-  for (auto &&t : threads) {
+  for (auto&& t : threads) {
     t.join();
   }
 }
 
-#endif 
+#endif

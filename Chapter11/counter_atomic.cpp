@@ -1,8 +1,8 @@
+#include <atomic>
 #include <cassert>
+#include <gtest/gtest.h>
 #include <iostream>
 #include <thread>
-#include <atomic>
-#include <gtest/gtest.h>
 
 namespace {
 
