@@ -6,7 +6,7 @@ file(
   GLOB_RECURSE
   CHAPTER_SRC_FILES
   "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
   )
 
 add_executable (${PROJECT_NAME}

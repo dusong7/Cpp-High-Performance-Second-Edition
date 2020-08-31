@@ -3,7 +3,7 @@
 
 class Connection {
 public:
-  Connection(const std::string& url) {
+  Connection(const std::string& /*url*/) {
     std::cout << "Connection constructed" << '\n';
   }
   ~Connection() {
@@ -12,7 +12,7 @@ public:
   //...
 };
 
-auto close(Connection& connection) {
+auto close(Connection& /*connection*/) {
   //...
 }
 
@@ -21,7 +21,7 @@ auto open_connection(const std::string& url) {
 }
 
 
-auto send_request(Connection& connection, const std::string& message) {
+auto send_request(Connection& /*connection*/, const std::string& /*message*/) {
   // ...
 }
 
