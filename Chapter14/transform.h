@@ -22,7 +22,7 @@ auto par_transform_naive(SrcIt first, SrcIt last, DstIt dst, Func f) {
   auto n_tasks = std::max(n_cores, 1ul);
   auto chunk_sz = (n + n_tasks - 1) / n_tasks;
   auto futures = std::vector<std::future<void>>{};
-  // Invoke each chunk on a separate task to be executed in parallel
+  // Process each chunk on a separate task
   for (auto i = 0ul; i < n_tasks; ++i) {
     auto start = chunk_sz * i;
     if (start < n) {
