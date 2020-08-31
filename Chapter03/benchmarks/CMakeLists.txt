@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(Chapter03-Measuring_Performance_Benchmarking)
+project(Chapter03-Measuring_Performance_Benchmarks)
 
 
 file(

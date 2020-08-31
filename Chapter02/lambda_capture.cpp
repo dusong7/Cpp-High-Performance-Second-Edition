@@ -99,10 +99,10 @@ public:
     auto b = 1.0f;
 
     // Capture all variables by copy
-    auto lambda_0 = [=]() { std::cout << a << b << m_; };
+    auto lambda_0 = [=]() { std::cout << a << b; };
 
     // Capture all variables by reference
-    auto lambda_1 = [&]() { std::cout << a << b << m_; };
+    auto lambda_1 = [&]() { std::cout << a << b; };
 
     // Capture member variables by reference
     auto lambda_2 = [this]() { std::cout << m_; };

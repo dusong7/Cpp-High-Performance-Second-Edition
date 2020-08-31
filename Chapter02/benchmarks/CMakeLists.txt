@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(Chapter02-Essential_CPP_Techniques_Benchmarking)
+project(Chapter02-Essential_CPP_Techniques_Benchmarks)
 
 
 file(

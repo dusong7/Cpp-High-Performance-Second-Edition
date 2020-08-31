@@ -43,7 +43,7 @@ public:
   }
 
   // 4. Move constructor
-  Buffer(Buffer&& other) noexcept : ptr_{other.ptr_}, size_{other.size_} {
+  Buffer(Buffer&& other) noexcept : size_{other.size_}, ptr_{other.ptr_} {
     other.ptr_ = nullptr;
     other.size_ = 0;
   }
