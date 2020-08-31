@@ -1,11 +1,9 @@
 #pragma once
-#ifndef SCOOPED_TIMER_HPP
-#define SCOOPED_TIMER_HPP
 
 #include <iostream>
 #include <chrono>
 
-// ScoopedTimer from Chapter 3
+// ScopedTimer from Chapter 3
 class ScopedTimer {
 
 public:
@@ -34,5 +32,3 @@ private:
   const char* function_ = {};
   const ClockType::time_point start_ = {};
 };
-
-#endif

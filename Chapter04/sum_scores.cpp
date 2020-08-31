@@ -2,7 +2,7 @@
 #include <array>
 #include <vector>
 #include <gtest/gtest.h>
-#include "scooped_timer.hpp"
+#include "scoped_timer.h"
 
 //
 // This example demonstrates that traversing a contiguous array
