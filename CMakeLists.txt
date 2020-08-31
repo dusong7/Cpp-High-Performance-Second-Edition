@@ -37,6 +37,8 @@ add_subdirectory("Chapter03")
 add_subdirectory("Chapter03/benchmarking")
 add_subdirectory("Chapter07")
 add_subdirectory("Chapter11")
+add_subdirectory("Chapter14")
+#add_subdirectory("Chapter13/benchmarking")
 
 enable_testing()
 add_test(NAME Chapter01-A_Brief_Introduction_to_C++ COMMAND Chapter01-A_Brief_Introduction_to_C++)
@@ -46,3 +48,4 @@ add_test(NAME Chapter03-Measuring_Performance COMMAND Chapter03-Measuring_Perfor
 add_test(NAME Chapter03-Measuring_Performance_Benchmarking COMMAND Chapter03-Measuring_Performance_Benchmarking)
 add_test(NAME Chapter07-Memory_Management COMMAND Chapter07-Memory_Management)
 add_test(NAME Chapter11-Concurrency COMMAND Chapter11-Concurrency)
+add_test(NAME Chapter14-Parallel_Algorithms COMMAND Parallel_Algorithms)
