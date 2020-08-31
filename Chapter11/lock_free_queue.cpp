@@ -1,9 +1,11 @@
 #include <array>
 #include <atomic>
 #include <cassert>
-#include <gtest/gtest.h>
 #include <iostream>
+#include <optional>
 #include <thread>
+
+#include <gtest/gtest.h>
 
 template <class T, size_t N> class LockFreeQueue {
   std::array<T, N> buffer_{};   // Used by both threads
@@ -12,7 +14,7 @@ template <class T, size_t N> class LockFreeQueue {
   size_t write_pos_{0};         // Used by writer thread
   static_assert(std::atomic<size_t>::is_always_lock_free);
 
-  bool do_push(auto&& t) {
+  bool do_push(T&& t) {
     if (size_.load() == N) {
       return false;
     }
@@ -28,14 +30,14 @@ public:
   bool push(const T& t) { return do_push(t); }
 
   // Reader thread
-  bool pop(T& value) {
-    if (size_.load() == 0) {
-      return false;
+  auto pop() -> std::optional<T> {
+    auto val = std::optional<T>{};
+    if (size_.load() > 0) {
+      val = std::move(buffer_[read_pos_]);
+      read_pos_ = (read_pos_ + 1) % N;
+      size_.fetch_sub(1);
     }
-    value = std::move(buffer_[read_pos_]);
-    read_pos_ = (read_pos_ + 1) % N;
-    size_.fetch_sub(1);
-    return true;
+    return val;
   }
   auto size() const noexcept { return size_.load(); }
 };
@@ -44,26 +46,27 @@ constexpr auto max_size = 10000;
 constexpr auto done = -1;
 
 TEST(LockFreeQueue, PutAndPop) {
-  LockFreeQueue<int, max_size> queue;
+  LockFreeQueue<std::optional<int>, max_size> queue;
   std::vector<int> result;
 
   auto writer = std::thread{[&queue]() {
     for (auto i = 0; i < 10; ++i) {
-      queue.push(int{i});
+      queue.push({i});
     }
-    queue.push(int{done});
+    queue.push(std::nullopt);
   }};
 
   auto reader = std::thread{[&queue, &result]() {
     for (;;) {
-      auto element = int{};
-      if (queue.pop(element)) {
-        if (element != done) {
-          std::cout << "Got: " << element << '\n';
-          result.push_back(element);
-        } else {
-          break;
-        }
+      while (queue.size() == 0) {
+        // busy wait
+      }
+      auto element = *queue.pop();
+      if (element.has_value()) {
+        std::cout << "Got: " << *element << '\n';
+        result.push_back(*element);
+      } else {
+        break;
       }
     }
   }};
