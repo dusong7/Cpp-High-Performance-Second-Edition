@@ -45,8 +45,8 @@ TEST(Projections, CompareUsingTie) {
   auto players = create_players();
 
   auto cmp = [](const Player& lhs, const Player& rhs) {
-    auto p1 = std::tie(lhs.level_, rhs.score_); // Projection
-    auto p2 = std::tie(lhs.level_, rhs.score_); // Projection
+    auto p1 = std::tie(lhs.level_, lhs.score_); // Projection
+    auto p2 = std::tie(rhs.level_, rhs.score_); // Projection
     return p1 < p2;
   };
   std::sort(players.begin(), players.end(), cmp);
