@@ -88,7 +88,7 @@ TEST(EverydayProblems, Find) {
 TEST(EverydayProblems, BinarySearch) {
   auto v = std::vector<int>{2, 2, 3, 3, 3, 4, 5}; // Sorted!
   bool found = std::ranges::binary_search(v, 3);
-  std::cout << "Found: " << found << '\n'; // Output: Found: 1
+  std::cout << std::boolalpha << found;           // Output: true
 
   ASSERT_TRUE(found);
 }
@@ -168,7 +168,7 @@ TEST(EverydayProblems, Count) {
 
 TEST(EverydayProblems, CountUsingEqualRangeAndSize) {
   auto v = std::vector<int>{0, 2, 2, 3, 3, 4, 5};
-  assert(std::is_sorted(v)); // O(n), but not called in release
+  assert(std::ranges::is_sorted(v)); // O(n), but not called in release
   auto r = std::ranges::equal_range(v, 3);
   int n = std::ranges::size(r);
   std::cout << n; // Output: 2

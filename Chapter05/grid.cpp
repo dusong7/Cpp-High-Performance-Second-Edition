@@ -1,11 +1,6 @@
-
 #include <gtest/gtest.h>
 
 #include <algorithm>
-#include <concepts>
-#include <iostream>
-#include <list>
-#include <numeric>
 #include <ranges>
 #include <vector>
 
@@ -39,7 +34,6 @@ auto Grid::get_row_v3(size_t y) {
 }
 
 } // namespace
-
 
 TEST(Grid, CountFivesUsingIteratorPairs) {
   auto grid = Grid{10, 10};
