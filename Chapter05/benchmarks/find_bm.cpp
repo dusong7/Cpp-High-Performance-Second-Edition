@@ -80,13 +80,12 @@ void bm_find_fast(benchmark::State& state) {
   }
 }
 
-template <typename Find>
 void bm_find_slow(benchmark::State& state) {
   const auto n = state.range(0);
   auto r = create_ints(n);
   auto element = r.back();
   for (auto _ : state) {
-    auto it = Find(r.begin(), r.end(), element);
+    auto it = find_slow(r.begin(), r.end(), element);
     benchmark::DoNotOptimize(it);
   }
 }
@@ -94,9 +93,6 @@ void bm_find_slow(benchmark::State& state) {
 } // namespace
 
 BENCHMARK(bm_find_fast)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
-//BENCHMARK(bm_find_slow)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
-BENCHMARK_TEMPLATE(bm_find_slow, find_slow)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
-// BENCHMARK(bm_median)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
-// BENCHMARK(bm_partial_sort)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
+BENCHMARK(bm_find_slow)->Arg(10'000'000)->Unit(benchmark::kMillisecond);
 
 BENCHMARK_MAIN();
