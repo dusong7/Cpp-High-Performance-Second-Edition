@@ -21,7 +21,7 @@ TEST(Sorting, NthElement) {
   // Max element in the left subrange
   auto left = *std::max_element(v.begin(), it);
   // Min element in the right subrange
-  auto right = *std::min_element(it+1, v.end());
+  auto right = *std::min_element(it + 1, v.end());
   ASSERT_TRUE(left <= right);
 }
 
@@ -32,4 +32,42 @@ TEST(Sorting, PartialSort) {
   std::partial_sort(v.begin(), it, v.end());
 
   ASSERT_TRUE(std::is_sorted(v.begin(), it));
+}
+
+
+//
+// Additional use cases
+//
+
+TEST(Sorting, SortSpecificPartOfRange) {
+  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto it = v.begin() + v.size() / 2;
+  auto left = it - 1;
+  auto right = it + 2;
+  std::nth_element(v.begin(), left, v.end());
+  std::partial_sort(left, right, v.end());
+
+  ASSERT_TRUE(std::is_sorted(left, right));
+}
+
+TEST(Sorting, SortBackOfRange) {
+  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto it = v.begin() + v.size() / 2;
+  std::nth_element(v.begin(), it, v.end());
+  std::sort(it, v.end());
+
+  ASSERT_TRUE(std::is_sorted(it, v.end()));
+}
+
+TEST(Sorting, SortFrontAndBack) {
+  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto it = v.begin() + v.size() / 2;
+  auto left = it - 1;
+  auto right = it + 2;
+  std::nth_element(v.begin(), right, v.end());
+  std::partial_sort(v.begin(), left, right);
+  std::sort(right, v.end());
+
+  ASSERT_TRUE(std::is_sorted(v.begin(), left));
+  ASSERT_TRUE(std::is_sorted(right, v.end()));
 }
