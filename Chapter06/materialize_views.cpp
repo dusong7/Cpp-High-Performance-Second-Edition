@@ -24,7 +24,7 @@ TEST(MaterializeViews, IntListToStringVector) {
       ints | std::views::transform([](auto i) { return std::to_string(i); });
   auto strings = to_vector(r);
 
-  auto result = std::vector<std::string>{"2", "3", "4", "1"};
+  auto result = std::vector<std::string>{"2", "3", "4", "2", "1"};
   ASSERT_EQ(strings, result);
 }
 
