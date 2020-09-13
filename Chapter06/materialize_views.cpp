@@ -1,3 +1,5 @@
+#include "to_vector.h"
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -6,16 +8,6 @@
 #include <string>
 #include <vector>
 
-// Materialize the range r into a std::vector
-// See also https://timur.audio/how-to-make-a-container-from-a-c20-range
-auto to_vector(auto&& r) {
-  std::vector<std::ranges::range_value_t<decltype(r)>> v;
-  if constexpr (std::ranges::sized_range<decltype(r)>) {
-    v.reserve(std::ranges::size(r));
-  }
-  std::ranges::copy(r, std::back_inserter(v));
-  return v;
-}
 
 TEST(MaterializeViews, IntListToStringVector) {
 

@@ -4,9 +4,10 @@
 #include <iostream>
 #include <numeric>
 #include <ranges>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
+
 
 TEST(RangeViews, GeneratingViews) {
 
@@ -48,5 +49,5 @@ TEST(RangeViews, UtilityViews) {
   for (auto f : std::ranges::istream_view<float>(ifs)) {
     std::cout << f << '\n';
   }
-  //ifs.close();
+  // ifs.close();
 }

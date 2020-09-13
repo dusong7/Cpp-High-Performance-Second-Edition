@@ -21,10 +21,10 @@ auto get_max_score_copy(const std::vector<Student>& students, int year) {
   auto by_year = [=](const auto& s) { return s.year_ == year; };
   // The student list needs to be copied in
   // order to filter on the year
-  auto s_copy = std::vector<Student>{};
-  std::ranges::copy_if(students, std::back_inserter(s_copy), by_year);
-  auto it = std::ranges::max_element(s_copy, std::less{}, &Student::score_);
-  return it != s_copy.end() ? it->score_ : 0;
+  auto v = std::vector<Student>{};
+  std::ranges::copy_if(students, std::back_inserter(v), by_year);
+  auto it = std::ranges::max_element(v, std::less{}, &Student::score_);
+  return it != v.end() ? it->score_ : 0;
 }
 
 auto get_max_score_for_loop(const std::vector<Student>& students, int year) {
@@ -61,10 +61,10 @@ auto get_max_score_explicit_views(const std::vector<Student>& s, int year) {
 TEST(Student, GetMaxScore) {
 
   auto students = std::vector<Student>{
-      {3, 120, "Jon"},
-      {2, 140, "Josef"},
-      {3, 190, "Jonna"},
-      {2, 110, "Erik"},
+      {3, 120, "Niki"},
+      {2, 140, "Karo"},
+      {3, 190, "Sirius"},
+      {2, 110, "Rani"},
   };
 
   {

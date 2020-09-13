@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <algorithm>
-#include <cstring>
 #include <ranges>
 #include <span>
 #include <string>
