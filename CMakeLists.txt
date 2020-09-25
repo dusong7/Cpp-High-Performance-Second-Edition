@@ -44,6 +44,7 @@ add_subdirectory("Chapter09")
 add_subdirectory("Chapter10")
 add_subdirectory("Chapter10/benchmarks")
 add_subdirectory("Chapter11")
+add_subdirectory("Chapter12")
 add_subdirectory("Chapter14")
 add_subdirectory("Chapter14/benchmarks")
 
@@ -60,4 +61,5 @@ add_test(NAME Chapter08-Compile_Time_Programming COMMAND Chapter08-Compile_Time_
 add_test(NAME Chapter09-Essential_Utilities COMMAND Chapter09-Essential_Utilities)
 add_test(NAME Chapter10-Proxy_Objects_And_Lazy_Evaluation COMMAND Chapter10-Proxy_Objects_And_Lazy_Evaluation)
 add_test(NAME Chapter11-Concurrency COMMAND Chapter11-Concurrency)
+add_test(NAME Chapter12-Coroutines_And_Lazy_Generators COMMAND Chapter12-Coroutines_And_Lazy_Generators)
 add_test(NAME Chapter14-Parallel_Algorithms COMMAND Chapter14-Parallel_Algorithms)
