@@ -17,10 +17,10 @@ struct Generator {
 private:
   struct Promise {
   T value_;
-  Generator get_return_object() {
-    return Generator{
-      cons::coroutine_handle<Promise>::from_promise(*this)};
-    }
+  auto get_return_object() -> Generator {
+    using Handle = cons::coroutine_handle<Promise>;
+    return Generator{Handle::from_promise(*this)};
+  }
   auto initial_suspend() { return cons::suspend_always{}; }
   auto final_suspend() noexcept { return cons::suspend_always{}; }
   void return_void() {}
@@ -52,10 +52,8 @@ struct Iterator {
   }
   void operator++(int) { (void)operator++(); }
   T operator*() const { return  h_.promise().value_; }
-  //reference operator*() const { return *h_.promise().value_; }
   pointer operator->() const { return std::addressof(operator*()); }
   bool operator==(Sentinel) const { return h_.done(); }
-  // bool operator!=(Sentinel s) const { return !operator==(s); }
 };
 
   

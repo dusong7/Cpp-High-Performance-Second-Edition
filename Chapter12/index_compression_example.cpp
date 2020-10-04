@@ -10,8 +10,6 @@
 #include <string>
 #include <vector>
 
-using Byte = std::uint8_t;
-
 template <typename Range>
 Generator<int> gap_encode(Range& ids) {
   auto last_id = 0;
@@ -32,9 +30,9 @@ Generator<int> gap_decode(Range& gaps) {
   }
 }
 
-Generator<Byte> vb_encode_num(int n) {
-  for (Byte cont = 0; cont == 0;) {
-    auto b = static_cast<Byte>(n % 128);
+Generator<std::uint8_t> vb_encode_num(int n) {
+  for (auto cont = std::uint8_t{0}; cont == 0;) {
+    auto b = static_cast<std::uint8_t>(n % 128);
     n = n / 128;
     cont = (n == 0) ? 128 : 0;
     co_yield(b + cont);
@@ -42,7 +40,7 @@ Generator<Byte> vb_encode_num(int n) {
 }
 
 template <typename Range>
-Generator<Byte> vb_encode(Range& r) {
+Generator<std::uint8_t> vb_encode(Range& r) {
   for (auto n : r) {
     auto bytes = vb_encode_num(n);
     for (auto b : bytes) {
@@ -70,7 +68,7 @@ Generator<int> vb_decode(Range& bytes) {
 }
 
 template <typename Range>
-Generator<Byte> compress(Range& ids) {
+Generator<std::uint8_t> compress(Range& ids) {
   auto gaps = gap_encode(ids);
   auto bytes = vb_encode(gaps);
   for (auto b : bytes) {
@@ -94,7 +92,7 @@ void write(std::string path, Range& bytes) {
                     std::ostreambuf_iterator<char>(out));
 }
 
-Generator<Byte> read(std::string path) {
+Generator<std::uint8_t> read(std::string path) {
   std::ifstream in(path, std::ios::in | std::ofstream::binary);
   auto it = std::istreambuf_iterator<char>{in};
   const auto end = std::istreambuf_iterator<char>{};

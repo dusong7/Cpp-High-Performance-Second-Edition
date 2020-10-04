@@ -17,7 +17,7 @@ namespace cons = std;
 
 class Resumable { // The return object
   struct Promise {
-    Resumable get_return_object() {
+    auto get_return_object() {
       using Handle = cons::coroutine_handle<Promise>;
       return Resumable{Handle::from_promise(*this)};
     }
