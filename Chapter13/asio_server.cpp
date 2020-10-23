@@ -11,7 +11,7 @@
 using namespace std::chrono;
 namespace asio = boost::asio;
 
-using boost::asio::ip::tcp;
+using asio::ip::tcp;
 
 asio::awaitable<void> serve_client(tcp::socket socket) {
   std::cout << "New client connected\n";

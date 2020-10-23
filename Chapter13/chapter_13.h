@@ -5,7 +5,6 @@
 // #if defined(__cpp_impl_coroutine) && defined(__cpp_lib_coroutine)
 
 #ifdef __has_include 
-
 #if __has_include(<coroutine>)
 #include <coroutine>
 #define SUPPORTS_COROUTINES 1

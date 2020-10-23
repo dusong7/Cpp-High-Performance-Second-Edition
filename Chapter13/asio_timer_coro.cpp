@@ -1,13 +1,13 @@
 #include "chapter_13.h"
 #ifdef SUPPORTS_COROUTINES
 
-#include <boost/asio.hpp>
-#include <chrono>
-#include <iostream>
-
 #include <gtest/gtest.h>
 
 #include "task.h"
+
+#include <boost/asio.hpp>
+#include <chrono>
+#include <iostream>
 
 using namespace std::chrono;
 namespace asio = boost::asio;
@@ -19,7 +19,7 @@ auto async_await(asio::io_context& ctx, std::chrono::duration<R, P> d) {
   struct Awaitable {
     asio::system_timer t;
     std::chrono::duration<R, P> d;
-    boost::system::error_code ec;
+    boost::system::error_code ec{};
 
     bool await_ready() { return d.count() <= 0; }
     void await_suspend(std::coroutine_handle<> h) {

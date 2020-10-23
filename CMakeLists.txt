@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 # Use hunter to download and build some third party dependencies
 include("cmake/HunterGate.cmake")
 
-huntergate(URL "https://github.com/cpp-pm/hunter/archive/v0.23.260.tar.gz" SHA1 "13775235910a3fa85644568d1c5be8271de72e1c")
+huntergate(URL "https://github.com/cpp-pm/hunter/archive/v0.23.279.tar.gz" SHA1 "0a8ede485c3e9c1ceed8ccb989ab6c0aba1f4db7")
 
 project(CppHighPerformanceCodeExamples)
 
@@ -13,11 +13,22 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)
 
-if(CMAKE_COMPILER_IS_GNUCC)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fcoroutines -Wno-unused-variable -Wno-unused-but-set-variable")
-endif()
-if(MSVC)
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC") 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+endif()
+
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") 
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-variable -Wno-unused-but-set-variable")
+  if(${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER_EQUAL 10.2)
+    # Don't bother adding the coroutine flag when using GCC 10.0 or 10.1
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcoroutines")
+  endif()
+endif()
+
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang") 
+  if(${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER_EQUAL 10)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcoroutines-ts")
+  endif()
 endif()
 
 hunter_add_package(Boost)

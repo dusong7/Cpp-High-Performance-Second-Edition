@@ -3,10 +3,11 @@
 
 #include <gtest/gtest.h>
 
-#include <iostream>
-
 #include "sync_wait.h"
 #include "task.h"
+
+#include <iostream>
+
 
 namespace {
 
