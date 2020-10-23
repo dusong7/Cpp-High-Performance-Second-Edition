@@ -1,5 +1,6 @@
-#include <future>
 #include <gtest/gtest.h>
+
+#include <future>
 #include <iostream>
 #include <thread>
 

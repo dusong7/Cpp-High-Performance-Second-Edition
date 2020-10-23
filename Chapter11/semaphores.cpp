@@ -2,8 +2,9 @@
 #include <version>
 #if defined(__cpp_lib_semaphore)
 
-#include <array>
 #include <gtest/gtest.h>
+
+#include <array>
 #include <iostream>
 #include <optional>
 #include <semaphore>
@@ -86,4 +87,4 @@ TEST(Semaphores, BoundedBuffer) {
   consumer.join();
 }
 
-#endif
+#endif // semaphore

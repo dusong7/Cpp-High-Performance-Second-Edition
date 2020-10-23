@@ -1,5 +1,6 @@
-#include <cassert>
 #include <gtest/gtest.h>
+
+#include <cassert>
 #include <iostream>
 #include <thread>
 

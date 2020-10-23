@@ -1,7 +1,8 @@
+#include <gtest/gtest.h>
+
 #include <chrono>
 #include <condition_variable>
 #include <future>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <queue>
 #include <string>

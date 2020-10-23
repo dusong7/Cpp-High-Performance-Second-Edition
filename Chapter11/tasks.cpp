@@ -1,8 +1,10 @@
 #if _MSC_VER
 #pragma warning(disable : 4244)
 #endif
-#include <future>
+
 #include <gtest/gtest.h>
+
+#include <future>
 #include <iostream>
 #include <thread>
 

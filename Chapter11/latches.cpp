@@ -3,9 +3,10 @@
 #include <version>
 #if defined(__cpp_lib_latch)
 
+#include <gtest/gtest.h>
+
 #include <array>
 #include <chrono>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <latch>
 #include <thread>
@@ -38,4 +39,4 @@ TEST(Latches, PrefaultStack) {
   }
 }
 
-#endif
+#endif // latch

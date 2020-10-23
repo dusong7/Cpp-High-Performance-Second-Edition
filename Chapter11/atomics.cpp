@@ -1,8 +1,10 @@
 // No compiler support yet
 #include <version>
 #if defined(__cpp_lib_atomic_wait) && defined(__cpp_lib_atomic_flag_test)
-#include <atomic>
+
 #include <gtest/gtest.h>
+
+#include <atomic>
 #include <iostream>
 #include <random>
 #include <thread>
@@ -91,4 +93,4 @@ TEST(Atomics, WaitAndNotify) {
 
 } // namespace WaitAndNotify
 
-#endif
+#endif // atomic wait && atomic notify

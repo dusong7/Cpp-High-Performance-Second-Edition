@@ -1,10 +1,11 @@
 #include <version>
 #if defined(__cpp_lib_barrier)
 
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <array>
 #include <barrier>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <numeric>
 #include <random>
@@ -47,4 +48,5 @@ TEST(Barriers, ForkJoin) {
   }
   std::cout << n_turns << '\n';
 }
-#endif
+
+#endif // barrier

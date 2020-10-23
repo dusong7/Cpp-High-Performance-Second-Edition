@@ -1,11 +1,11 @@
+#include <gtest/gtest.h>
+
 #include <array>
 #include <atomic>
 #include <cassert>
 #include <iostream>
 #include <optional>
 #include <thread>
-
-#include <gtest/gtest.h>
 
 template <class T, size_t N> class LockFreeQueue {
   std::array<T, N> buffer_{};   // Used by both threads

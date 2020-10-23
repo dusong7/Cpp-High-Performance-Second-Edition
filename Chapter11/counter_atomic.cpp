@@ -1,6 +1,7 @@
+#include <gtest/gtest.h>
+
 #include <atomic>
 #include <cassert>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <thread>
 

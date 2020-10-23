@@ -1,10 +1,10 @@
-#include <future>
 #include <gtest/gtest.h>
-#include <iostream>
-#include <thread>
 
 #include <atomic>
 #include <complex>
+#include <future>
+#include <iostream>
+#include <thread>
 #include <utility>
 
 namespace {
