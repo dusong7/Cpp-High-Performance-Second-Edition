@@ -1,6 +1,10 @@
+#include <version>
+#if defined(__cpp_lib_execution) && defined(__cpp_lib_parallel_algorithm)
+
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <execution>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <numeric>
 #include <string>
@@ -27,3 +31,5 @@ TEST(IndexBasedLoop, ParallelFor) {
   auto s = os.str();
   ASSERT_EQ("A1 B2 C3 ", s);
 }
+
+#endif // par execution

@@ -1,10 +1,13 @@
+#include <version>
+#if defined(__cpp_lib_execution) && defined(__cpp_lib_parallel_algorithm)
+
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <numeric>
 #include <execution>
 #include <string>
 #include <vector>
-
-#include <gtest/gtest.h>
 
 TEST(ParllelPolicy, DataRaceWithForEach) {
   auto v = std::vector<std::string>{"Ada", "APL" /*...*/};
@@ -22,3 +25,5 @@ TEST(ParllelPolicy, Reduce) {
                                 return i + s.size(); // OK! Thread safe
                               });
 }
+
+#endif // par execution

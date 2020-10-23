@@ -1,6 +1,12 @@
-#include "copy_if.h"
-#include <cassert>
+#include <version>
+#if defined(__cpp_lib_execution) && defined(__cpp_lib_parallel_algorithm)
+
 #include <gtest/gtest.h>
+
+#include "copy_if.h"
+
+#include <cassert>
+#include <execution>
 #include <vector>
 
 TEST(CopyIf, OddNumbers) {
@@ -39,3 +45,5 @@ TEST(CopyIfSyncronizedWritePosition, OddNumbers) {
   std::sort(odd_numbers.begin(), odd_numbers.end());
   ASSERT_EQ(odd_numbers, (std::vector<int>{1, 3, 5, 7, 9, 11, 13, 15}));
 }
+
+#endif // par execution
