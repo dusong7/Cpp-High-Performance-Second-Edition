@@ -17,4 +17,5 @@ TEST(JoinableThread, ToConsole) {
 } // OK: jthread will join automatically
 
 } // namespace
-#endif
+
+#endif // jthread
