@@ -1,3 +1,7 @@
+ // Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -234,3 +238,5 @@ TEST(EverydayProblems, MinElement) {
   auto it = std::ranges::min_element(v);
   std::cout << std::distance(v.begin(), it); // Output: 3
 }
+
+#endif // ranges

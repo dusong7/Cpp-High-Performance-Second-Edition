@@ -1,4 +1,5 @@
 #include "chapter_13.h"
+#if SUPPORTS_COROUTINES
 
 #include <boost/asio.hpp>
 #include <boost/asio/awaitable.hpp>
@@ -37,6 +38,7 @@ auto listen(tcp::endpoint endpoint) -> asio::awaitable<void> {
   try {
     auto ex = co_await asio::this_coro::executor;
     auto a = tcp::acceptor{ex, endpoint};
+    std::cout << "Listening on port " << endpoint.port() << '\n';
     while (true) {
       auto socket = co_await a.async_accept(asio::use_awaitable);
       auto session = [s = std::move(socket)]() mutable {
@@ -61,3 +63,5 @@ int main() {
   asio::co_spawn(ctx, server, asio::detached);
   ctx.run(); // Run event loop from main thread
 }
+
+#endif // SUPPORTS_COROUTINES

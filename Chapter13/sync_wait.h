@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chapter_13.h"
+#if SUPPORTS_COROUTINES
 
 #include <cassert>
 #include <version>
@@ -32,7 +33,7 @@ class SyncWaitTask { // A helper class only used by sync_wait()
     auto final_suspend() noexcept {
       struct Awaitable {
         bool await_ready() noexcept { return false; }
-        void await_suspend(std::coroutine_handle<Promise> h) {
+        void await_suspend(std::coroutine_handle<Promise> h) noexcept {
 
 #if defined(__cpp_lib_semaphore)
           h.promise().semaphore_.release(); // Signal!
@@ -120,3 +121,5 @@ Result<T> sync_wait(T&& task) {
     return coro().get(); // Rerturn value
   }
 }
+
+#endif // SUPPORTS_COROUTINES

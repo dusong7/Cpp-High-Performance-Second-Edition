@@ -1,16 +1,11 @@
-#include "./resumable.h"
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
+
+#include <version>
 
 #include <gtest/gtest.h>
 
-
-#ifdef _MSC_VER
-#include <experimental/coroutine>
-namespace stdx = std::experimental;
-#else
-#include <coroutine>
-//namespace stdx = std;
-namespace cons = std;
-#endif
+#include "resumable.h"
 
 #include <functional>
 #include <iostream>
@@ -76,7 +71,7 @@ namespace {
 struct Widget {
   Resumable coroutine() {    // A member function
     std::cout << i++ << " "; // Access data member
-    co_await cons::suspend_always{};
+    co_await std::suspend_always{};
     std::cout << i++ << " ";
   }
   int i{};
@@ -121,9 +116,11 @@ TEST(DanglingReferences, CoroutineLambdaOK) {
 TEST(DanglingReferences, CoroutineLambdaUndefinedBehavior) {
   auto coro = [i = 0]() mutable -> Resumable {
     std::cout << i++;
-    co_await cons::suspend_always{};
+    co_await std::suspend_always{};
     std::cout << i++;
-  }();              // Invoke lambda immediately
+  }(); // Invoke lambda immediately
   // coro.resume(); // Undefined behavior! Function object
   // coro.resume(); // already destructed
 }
+
+#endif // SUPPORTS_COROUINES

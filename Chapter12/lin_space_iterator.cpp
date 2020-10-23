@@ -1,6 +1,6 @@
-#include "./lin_value.h"
-
 #include <gtest/gtest.h>
+
+#include "lin_value.h"
 
 #include <sstream>
 #include <vector>

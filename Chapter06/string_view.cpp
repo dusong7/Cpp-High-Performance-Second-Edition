@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include "to_vector.h"
 
 #include <gtest/gtest.h>
@@ -33,3 +37,5 @@ TEST(StringView, Split) {
   
   ASSERT_EQ(v1, v2);
 }
+
+#endif // ranges

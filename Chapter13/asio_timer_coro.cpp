@@ -1,4 +1,5 @@
 #include "chapter_13.h"
+#if SUPPORTS_COROUTINES
 
 #include <boost/asio.hpp>
 #include <chrono>
@@ -77,3 +78,5 @@ TEST(BoostAsioCoro, TimerExampleUsingCoroutines) {
 
   run_task(ctx, std::move(task));  
 };
+
+#endif // SUPPORTS_COROUTINES

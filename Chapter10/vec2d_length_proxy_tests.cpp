@@ -1,9 +1,15 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
+
 #include "vec2d_length_proxy.h"
 
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <ranges>
+#include <vector>
+
 
 
 // Simple and efficient
@@ -27,3 +33,5 @@ TEST(LengthProxy, MinLength) {
   auto x = min_length(v);
   ASSERT_FLOAT_EQ(x, 5.f);
 }
+
+#endif // ranges

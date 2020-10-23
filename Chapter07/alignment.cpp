@@ -1,12 +1,12 @@
-#include <bit>
 #include <gtest/gtest.h>
+
+#include <bit>
 #include <iostream>
 
 bool is_aligned(void* ptr, std::size_t alignment) {
   assert(ptr != nullptr);
-  // assert(std::has_single_bit(alignment)); // Power of 2   // [ Requires C++20
-  // ]
-
+  // assert(std::has_single_bit(alignment)); // Power of 2   // Requires C++20
+  
   auto s = std::numeric_limits<std::size_t>::max();
   // void* aligned_ptr = ptr;
   auto* aligned_ptr = ptr;

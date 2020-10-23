@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include "to_vector.h"
 
 #include <gtest/gtest.h>
@@ -43,3 +47,5 @@ TEST(MaterializeViews, IteratorQualityPreserved) {
   auto result = std::vector{1, 2, 4, 7, 2, 6, 1, 5};
   ASSERT_EQ(vec, result);
 }
+
+#endif // ranges

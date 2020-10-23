@@ -1,6 +1,10 @@
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
+
 #include <gtest/gtest.h>
 
-#include "./generator.h"
+#include "generator.h"
+
 #include <limits>
 
 Generator<int> iota(int start) {
@@ -26,3 +30,5 @@ TEST(GeneratorInitialExamlpe, IotaAndTakeUntil) {
   }
 }
 // Prints: 2, 3, 4
+
+#endif // SUPPORTS_COROUTINES

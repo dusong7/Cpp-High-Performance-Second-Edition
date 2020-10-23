@@ -1,6 +1,9 @@
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
+
 #include <gtest/gtest.h>
 
-#include "./generator.h"
+#include "generator.h"
 
 #include <algorithm>
 #include <fstream>
@@ -126,3 +129,5 @@ TEST(IndexCompressionExample, CompressAndDecompress) {
     ASSERT_EQ("367, 438, 439, 440, ", os.str());
   }
 }
+
+#endif // SUPPORTS_COROUTINES

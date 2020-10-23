@@ -1,4 +1,5 @@
 #include "chapter_13.h"
+#if SUPPORTS_COROUTINES
 
 #include <gtest/gtest.h>
 
@@ -24,3 +25,5 @@ TEST(TaskEx, Area) {
   auto x = sync_wait(a);
   std::cout << x << std::endl;
 }
+
+#endif // SUPPORTS_COROUTINES

@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 #include <gtest/gtest.h>
-#include "scooped_timer.h"
+#include "scoped_timer.h"
 
 
 //

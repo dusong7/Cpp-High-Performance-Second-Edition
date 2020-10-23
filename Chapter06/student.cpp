@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -87,3 +91,5 @@ TEST(Student, GetMaxScore) {
     ASSERT_EQ(score, 140);
   }
 }
+
+#endif // ranges

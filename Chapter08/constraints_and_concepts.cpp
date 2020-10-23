@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_concepts) && defined(__cpp_lib_concepts)
+
 #include <gtest/gtest.h>
 
 #include <cmath>
@@ -121,3 +125,5 @@ TEST(ConstraintsAndConcepts, FunctionOverloading) {
     ASSERT_FLOAT_EQ(0.5f, y);
   }
 }
+
+#endif // concepts

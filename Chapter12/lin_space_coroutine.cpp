@@ -1,6 +1,9 @@
-#include "./lin_value.h"
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
 
 #include <gtest/gtest.h>
+
+#include "lin_value.h"
 
 #include <sstream>
 #include <vector>
@@ -30,3 +33,5 @@ TEST(LinSpaceCoroutine, Example) {
   }
   ASSERT_EQ("2, 2.25, 2.5, 2.75, 3, ", os.str());
 }
+
+#endif // SUPPORTS_COROUTINES

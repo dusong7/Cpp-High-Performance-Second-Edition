@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chapter_13.h"
+#if SUPPORTS_COROUTINES
 
 #include <exception>
 #include <variant>
@@ -106,3 +107,5 @@ public:
       std::rethrow_exception(h_.promise().e_);
   }
 };
+
+#endif // SUPPORTS_COROUTINES

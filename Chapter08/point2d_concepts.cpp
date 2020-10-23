@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_concepts) && defined(__cpp_lib_concepts)
+
 #include <gtest/gtest.h>
 
 #include <cmath>
@@ -47,3 +51,5 @@ TEST(Point2DConcepts, Dist) {
   // unrelevant types is no longer possible
   // auto p = Point2D{"2.0", "2.0"};
 }
+
+#endif // concepts

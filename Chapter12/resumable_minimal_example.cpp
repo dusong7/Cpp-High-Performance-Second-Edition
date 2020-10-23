@@ -1,12 +1,15 @@
-#include "./resumable.h"
+#include "chapter_12.h"
+#if SUPPORTS_COROUTINES
 
 #include <gtest/gtest.h>
+
+#include "resumable.h"
 
 #include <limits>
 
 Resumable coroutine() {            // Initial suspend
   std::cout << "3 ";
-  co_await cons::suspend_always{};  // Suspend (explicit)
+  co_await std::suspend_always{};  // Suspend (explicit)
   std::cout << "5 ";
 }                                  
 
@@ -21,3 +24,5 @@ TEST(ResumableMinimalExample, ResumeCoroutine) {
   std::cout << "6 ";
 }                               // Destroy coroutine state
 // Prints: 1 2 3 4 5 6
+
+#endif // SUPPORTS_COROUTINES

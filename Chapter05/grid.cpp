@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -64,3 +68,5 @@ TEST(Grid, CountFivesUsingCounted) {
   std::ranges::generate(row, std::rand);
   auto num_fives = std::ranges::count(row, 5);
 }
+
+#endif // ranges

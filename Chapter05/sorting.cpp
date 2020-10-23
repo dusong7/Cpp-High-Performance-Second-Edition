@@ -1,9 +1,13 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
 #include <ranges>
 
-TEST(Sorting, Sort) {
+TEST(Sorting, SortRanges) {
   auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
   std::ranges::sort(v);
 
@@ -71,3 +75,5 @@ TEST(Sorting, SortFrontAndBack) {
   ASSERT_TRUE(std::is_sorted(v.begin(), left));
   ASSERT_TRUE(std::is_sorted(right, v.end()));
 }
+
+#endif // ranges

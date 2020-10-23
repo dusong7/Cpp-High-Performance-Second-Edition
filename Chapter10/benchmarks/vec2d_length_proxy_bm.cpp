@@ -4,7 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
-#include <ranges>
+// #include <ranges> // Requires C++20
 #include <string>
 #include <vector>
 
@@ -24,7 +24,8 @@ struct Vec2DSlow {
 template <typename T> auto min_length(const T& r) -> float {
   assert(!r.empty());
   auto cmp = [](auto&& a, auto&& b) { return a.length() < b.length(); };
-  auto it = std::ranges::min_element(r, cmp);
+  // auto it = std::ranges::min_element(r, cmp);
+  auto it = std::min_element(std::begin(r), std::end(r), cmp);
   return it->length();
 }
 

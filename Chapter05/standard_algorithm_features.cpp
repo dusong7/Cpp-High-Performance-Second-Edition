@@ -1,3 +1,7 @@
+ // Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -136,3 +140,5 @@ TEST(AlgorithmFeatures, LambdaProjections) {
 
   ASSERT_EQ(players.front().name, "Nao");
 }
+
+#endif // ranges

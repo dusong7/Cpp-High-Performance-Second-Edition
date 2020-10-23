@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <cmath>
+#include <compare>
+#include <string>
 
 class LengthProxy {
 public:

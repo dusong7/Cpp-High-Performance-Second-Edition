@@ -1,24 +1,19 @@
-#include "./resumable.h"
+#include "chapter_12.h"
+#if SUPPORTS_COROUTINES
 
 #include <gtest/gtest.h>
+
+#include "resumable.h"
 
 #include <limits>
 #include <thread>
 
-#ifdef _MSC_VER
-#include <experimental/coroutine>
-namespace stdx = std::experimental;
-#else
-#include <coroutine>
-//namespace stdx = std;
-namespace cons = std;
-#endif
 
 namespace {
 
 Resumable coroutine() { // Same as before
   std::cout << "c1 ";
-  co_await cons::suspend_always{};
+  co_await std::suspend_always{};
   std::cout << "c2 ";
 }
 
@@ -40,3 +35,6 @@ TEST(PassingCoroutinesAround, ResumeFromDifferentThread) {
   }};
   t.join();
 }
+
+
+#endif // SUPPORTS_COROUTINES

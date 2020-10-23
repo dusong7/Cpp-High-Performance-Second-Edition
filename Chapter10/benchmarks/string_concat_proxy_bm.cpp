@@ -4,7 +4,7 @@
 
 #include <algorithm>
 #include <random>
-#include <ranges>
+// #include <ranges> // Requires C++20
 #include <string>
 #include <vector>
 
@@ -17,11 +17,13 @@ auto create_strings(int n, int length) {
     auto d = std::uniform_int_distribution<>{'A', 'Z'};
     auto random_char = [&] { return static_cast<char>(d(re)); };
     auto s = std::string(length, 0);
-    std::ranges::generate(s, random_char);
+    // std::ranges::generate(s, random_char); // Requires C++20
+    std::generate(std::begin(s), std::end(s), random_char);
     return s;
   };
   auto v = std::vector<T>(n);
-  std::ranges::generate(v, random_string);
+  // std::ranges::generate(v, random_string);
+  std::generate(std::begin(v), std::end(v), random_string);
   return v;
 }
 

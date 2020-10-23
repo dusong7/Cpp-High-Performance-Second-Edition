@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <random>
-#include <ranges>
 #include <string>
 #include <vector>
 
@@ -17,21 +16,27 @@ auto create_ints(int n) {
 void bm_sort(benchmark::State& state) {
   const auto n = state.range(0);
   auto r = create_ints(n);
+  auto rd = std::random_device{};
+  auto g = std::mt19937{rd()};
   for (auto _ : state) {
     state.PauseTiming();
-    std::random_shuffle(r.begin(), r.end());
+    std::shuffle(std::begin(r), std::end(r), g);
     state.ResumeTiming();
-    std::ranges::sort(r);
+    
+    std::sort(std::begin(r), std::end(r));
   }
 }
 
 void bm_median(benchmark::State& state) {
   const auto n = state.range(0);
   auto r = create_ints(n);
+  auto rd = std::random_device{};
+  auto g = std::mt19937{rd()};
   for (auto _ : state) {
     state.PauseTiming();
-    std::random_shuffle(r.begin(), r.end());
+    std::shuffle(r.begin(), r.end(), g);
     state.ResumeTiming();
+
     auto middle = r.begin() + r.size() / 2;
     std::nth_element(r.begin(), middle, r.end());
     auto median = *middle;
@@ -42,10 +47,13 @@ void bm_median(benchmark::State& state) {
 void bm_partial_sort(benchmark::State& state) {
   const auto n = state.range(0);
   auto r = create_ints(n);
+  auto rd = std::random_device{};
+  auto g = std::mt19937{rd()};
   for (auto _ : state) {
     state.PauseTiming();
-    std::random_shuffle(r.begin(), r.end());
+    std::shuffle(std::begin(r), std::end(r), g);
     state.ResumeTiming();
+
     std::partial_sort(r.begin(), r.begin() + n / 10, r.end());
   }
 }

@@ -1,10 +1,11 @@
-#include "./lin_value.h"
-
-#if defined(__cpp_lib_ranges)
-
 #include <gtest/gtest.h>
 
+#include "lin_value.h"
+
 #include <sstream>
+#include <version>
+
+#if defined(__cpp_lib_ranges)
 #include <ranges>
 
 namespace {

@@ -1,4 +1,6 @@
-
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges) && defined(__cpp_concepts) && defined(__cpp_lib_concepts)
 
 #include <gtest/gtest.h>
 
@@ -56,3 +58,5 @@ TEST(GenericAlgorithms, ContainsWithRanges) {
   ASSERT_TRUE(contains(v, 2));
   ASSERT_FALSE(contains(v, 1));
 }
+
+#endif // ranges && concepts

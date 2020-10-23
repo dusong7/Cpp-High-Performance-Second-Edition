@@ -1,15 +1,8 @@
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
 
 #include <exception>
 #include <utility>
-
-#ifdef _MSC_VER
-#include <experimental/coroutine>
-namespace stdx = std::experimental;
-#else
-#include <coroutine>
-//namespace stdx = std;
-namespace cons = std;
-#endif
 
 template <typename T>
 struct Generator {
@@ -18,20 +11,20 @@ private:
   struct Promise {
   T value_;
   auto get_return_object() -> Generator {
-    using Handle = cons::coroutine_handle<Promise>;
+    using Handle = std::coroutine_handle<Promise>;
     return Generator{Handle::from_promise(*this)};
   }
-  auto initial_suspend() { return cons::suspend_always{}; }
-  auto final_suspend() noexcept { return cons::suspend_always{}; }
+  auto initial_suspend() { return std::suspend_always{}; }
+  auto final_suspend() noexcept { return std::suspend_always{}; }
   void return_void() {}
   void unhandled_exception() { throw; }
   auto yield_value(T&& value) {
     value_ = std::move(value);
-    return cons::suspend_always{};
+    return std::suspend_always{};
   }
    auto yield_value(const T& value) {
     value_ = value;
-    return cons::suspend_always{};
+    return std::suspend_always{};
   }
 };
 
@@ -45,7 +38,7 @@ struct Iterator {
   using pointer = T*;
   using reference = T&;
 
-  cons::coroutine_handle<Promise> h_;
+  std::coroutine_handle<Promise> h_;
   Iterator& operator++() {
     h_.resume();
     return *this;
@@ -57,8 +50,8 @@ struct Iterator {
 };
 
   
-  cons::coroutine_handle<Promise> h_;
-  explicit Generator(cons::coroutine_handle<Promise> h) : h_(h) {}
+  std::coroutine_handle<Promise> h_;
+  explicit Generator(std::coroutine_handle<Promise> h) : h_(h) {}
 
 public: 
   using promise_type = Promise;
@@ -72,3 +65,5 @@ public:
   }
   auto end() { return Sentinel{}; }
 };
+
+#endif // SUPPORTS_COROUTINES

@@ -1,6 +1,9 @@
+#include "chapter_12.h"
+#ifdef SUPPORTS_COROUTINES
+
 #include <gtest/gtest.h>
 
-#include "./generator.h"
+#include "generator.h"
 
 template <typename T>
 Generator<T> seq() {
@@ -37,3 +40,5 @@ TEST(GeneratorExamlpe, SeqTakeUntilAdd) {
   }
   ASSERT_EQ(75, sum);
 }
+
+#endif // SUPPORTS_COROUTINES

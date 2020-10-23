@@ -1,3 +1,7 @@
+// Requires C++20
+#include <version>
+#if defined(__cpp_lib_ranges)
+
 #include <gtest/gtest.h>
 
 #include <algorithm>
@@ -51,3 +55,5 @@ TEST(RangeViews, UtilityViews) {
   }
   // ifs.close();
 }
+
+#endif // ranges

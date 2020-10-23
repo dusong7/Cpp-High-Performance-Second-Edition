@@ -1,18 +1,10 @@
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.12)
 
-project (Chapter04-Data_Structures)
+project(Chapter04-Data_Structures)
 
-file(
-  GLOB_RECURSE
-  CHAPTER_SRC_FILES
-  "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
-  )
+file(GLOB CHAPTER_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+     "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
-add_executable (${PROJECT_NAME}
-  ${CHAPTER_SRC_FILES}
-  )
+add_executable(${PROJECT_NAME} ${CHAPTER_SRC_FILES})
 
-target_link_libraries (${PROJECT_NAME}
-  GTest::gtest
-  )
+target_link_libraries(${PROJECT_NAME} GTest::gtest)
