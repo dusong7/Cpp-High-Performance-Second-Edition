@@ -1,5 +1,5 @@
 #include "chapter_12.h"
-#if SUPPORTS_COROUTINES
+#ifdef SUPPORTS_COROUTINES
 
 #include <gtest/gtest.h>
 

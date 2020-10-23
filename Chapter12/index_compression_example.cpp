@@ -1,5 +1,9 @@
+ // Requires C++20
 #include "chapter_12.h"
 #ifdef SUPPORTS_COROUTINES
+
+#include <version>
+#if defined(__cpp_lib_ranges)
 
 #include <gtest/gtest.h>
 
@@ -100,7 +104,7 @@ Generator<std::uint8_t> read(std::string path) {
   auto it = std::istreambuf_iterator<char>{in};
   const auto end = std::istreambuf_iterator<char>{};
   for (; it != end; ++it) {
-    co_yield* it;
+    co_yield *it;
   }
 }
 
@@ -130,4 +134,7 @@ TEST(IndexCompressionExample, CompressAndDecompress) {
   }
 }
 
+#endif // ranges
+
 #endif // SUPPORTS_COROUTINES
+

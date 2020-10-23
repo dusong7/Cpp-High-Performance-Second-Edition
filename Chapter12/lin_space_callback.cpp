@@ -9,13 +9,13 @@
 #include <vector>
 #include <version>
 
-#if defined(__cpp_concepts)
+#if defined(__cpp_concepts) && defined(__cpp_lib_concepts)
 #include <concepts>
-#endif // __cpp_concepts
+#endif // concepts
 
 namespace {
 
-#if defined(__cpp_concepts)
+#if defined(__cpp_concepts) && defined(__cpp_lib_concepts)
 
 template <typename T, typename F>
 requires std::invocable<F&, const T&> void lin_space(T start, T stop, size_t n,
