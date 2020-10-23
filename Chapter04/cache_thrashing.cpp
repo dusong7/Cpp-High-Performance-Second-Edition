@@ -10,14 +10,14 @@
 
 // The L1 Data cache size, replace this number with the
 // L1 Data cache size on your machine
-constexpr auto kL1CacheCapacity = 32768;
+constexpr auto kL1CacheCapacity = 32768u;
 constexpr auto kSize = kL1CacheCapacity / sizeof(int);
 using MatrixType = std::array<std::array<int, kSize>, kSize>;
 
 auto cache_thrashing_fast(MatrixType& matrix) {
   auto counter = 0;
-  for (auto i = 0; i < kSize; ++i) {
-    for (auto j = 0; j < kSize; ++j) {
+  for (auto i = 0u; i < kSize; ++i) {
+    for (auto j = 0u; j < kSize; ++j) {
       matrix[i][j] = counter++;
     }
   }
@@ -25,8 +25,8 @@ auto cache_thrashing_fast(MatrixType& matrix) {
 
 auto cache_thrashing_slow(MatrixType& matrix) {
   auto counter = 0;
-  for (auto i = 0; i < kSize; ++i) {
-    for (auto j = 0; j < kSize; ++j) {
+  for (auto i = 0u; i < kSize; ++i) {
+    for (auto j = 0u; j < kSize; ++j) {
       matrix[j][i] = counter++; // Slow due to cache thrashing
     }
   }

@@ -17,7 +17,11 @@ void operator delete(void* p) noexcept {
   if (print_allocation) {
     std::cout << "deleted memory\n";
   }
-  return std::free(p);
+  std::free(p);
+}
+
+void operator delete(void* p, std::size_t) noexcept {
+  operator delete(p);
 }
 
 auto operator new[](size_t isize) -> void* {
@@ -28,11 +32,15 @@ auto operator new[](size_t isize) -> void* {
   return p;
 }
 
-auto operator delete[](void* p) noexcept -> void {
+void operator delete[](void* p) noexcept {
   if (print_allocation) {
     std::cout << "deleted memory with delete[]\n";
   }
-  return std::free(p);
+  std::free(p);
+}
+
+void operator delete [](void* p, std::size_t) noexcept { 
+  operator delete[](p);
 }
 
 class Document {
