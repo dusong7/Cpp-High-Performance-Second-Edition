@@ -1,4 +1,4 @@
- // Requires C++20
+// Requires C++20
 #include "chapter_12.h"
 #ifdef SUPPORTS_COROUTINES
 
@@ -18,7 +18,7 @@
 #include <vector>
 
 template <typename Range>
-Generator<int> gap_encode(Range& ids) {
+ auto gap_encode(Range& ids) -> Generator<int> {
   auto last_id = 0;
   for (auto id : ids) {
     const auto gap = id - last_id;
@@ -28,7 +28,7 @@ Generator<int> gap_encode(Range& ids) {
 }
 
 template <typename Range>
-Generator<int> gap_decode(Range& gaps) {
+auto gap_decode(Range& gaps) -> Generator<int> {
   int last_id = 0;
   for (auto gap : gaps) {
     const auto id = gap + last_id;
@@ -37,7 +37,7 @@ Generator<int> gap_decode(Range& gaps) {
   }
 }
 
-Generator<std::uint8_t> vb_encode_num(int n) {
+autot vb_encode_num(int n) -> Generator<std::uint8_t> {
   for (auto cont = std::uint8_t{0}; cont == 0;) {
     auto b = static_cast<std::uint8_t>(n % 128);
     n = n / 128;
@@ -47,7 +47,7 @@ Generator<std::uint8_t> vb_encode_num(int n) {
 }
 
 template <typename Range>
-Generator<std::uint8_t> vb_encode(Range& r) {
+auto vb_encode(Range& r) -> Generator<std::uint8_t> {
   for (auto n : r) {
     auto bytes = vb_encode_num(n);
     for (auto b : bytes) {
@@ -57,7 +57,7 @@ Generator<std::uint8_t> vb_encode(Range& r) {
 }
 
 template <typename Range>
-Generator<int> vb_decode(Range& bytes) {
+auto vb_decode(Range& bytes) -> Generator<int> {
   int n = 0;
   int weight = 1;
   for (auto b : bytes) {
@@ -75,7 +75,7 @@ Generator<int> vb_decode(Range& bytes) {
 }
 
 template <typename Range>
-Generator<std::uint8_t> compress(Range& ids) {
+auto compress(Range& ids) -> Generator<int> {
   auto gaps = gap_encode(ids);
   auto bytes = vb_encode(gaps);
   for (auto b : bytes) {
@@ -84,7 +84,7 @@ Generator<std::uint8_t> compress(Range& ids) {
 }
 
 template <typename Range>
-Generator<int> decompress(Range& bytes) {
+auto decompress(Range& bytes) -> Generator<int> {
   auto gaps = vb_decode(bytes);
   auto ids = gap_decode(gaps);
   for (auto id : ids) {
@@ -94,13 +94,13 @@ Generator<int> decompress(Range& bytes) {
 
 template <typename Range>
 void write(std::string path, Range& bytes) {
-  std::ofstream out(path, std::ios::out | std::ofstream::binary);
+  auto out = std::ofstream{path, std::ios::out | std::ofstream::binary};
   std::ranges::copy(bytes.begin(), bytes.end(),
                     std::ostreambuf_iterator<char>(out));
 }
 
-Generator<std::uint8_t> read(std::string path) {
-  std::ifstream in(path, std::ios::in | std::ofstream::binary);
+auto read(std::string path) -> Generator<std::uint8_t> {
+  auto in = std::ifstream{path, std::ios::in | std::ofstream::binary};
   auto it = std::istreambuf_iterator<char>{in};
   const auto end = std::istreambuf_iterator<char>{};
   for (; it != end; ++it) {
@@ -137,4 +137,3 @@ TEST(IndexCompressionExample, CompressAndDecompress) {
 #endif // ranges
 
 #endif // SUPPORTS_COROUTINES
-

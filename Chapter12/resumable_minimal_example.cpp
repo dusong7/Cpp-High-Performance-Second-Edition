@@ -7,7 +7,7 @@
 
 #include <limits>
 
-Resumable coroutine() {            // Initial suspend
+auto coroutine() -> Resumable {            // Initial suspend
   std::cout << "3 ";
   co_await std::suspend_always{};  // Suspend (explicit)
   std::cout << "5 ";

@@ -15,10 +15,11 @@
 namespace {
 
 // Warning: Dangling reference to str!
-Resumable coroutine_ref(const std::string& str) { // Warning! Reference
+auto coroutine_ref(const std::string& str) -> Resumable { // Warning! Reference
   std::cout << str;
   co_return;
 }
+
 auto coro_factory_ref() {
   auto str = std::string{"ABC"};
   auto res = coroutine_ref(str);
@@ -26,7 +27,7 @@ auto coro_factory_ref() {
 }
 
 // OK: Pass string by value
-Resumable coroutine(std::string str) { // OK, by value!
+auto coroutine(std::string str) -> Resumable { // OK, by value!
   std::cout << str;
   co_return;
 }
@@ -69,7 +70,7 @@ TEST(DanglingReferences, LambdaWithStringReference) {
 namespace {
 
 struct Widget {
-  Resumable coroutine() {    // A member function
+  auto coroutine() -> Resumable {    // A member function
     std::cout << i++ << " "; // Access data member
     co_await std::suspend_always{};
     std::cout << i++ << " ";
