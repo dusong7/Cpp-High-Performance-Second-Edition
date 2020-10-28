@@ -6,13 +6,14 @@
 #include <vector>
 
 TEST(HeterogenousContainerOfVariants, Modification) {
+  using namespace std::string_literals;
 
   using VariantType = std::variant<int, std::string, bool>;
 
   auto container = std::vector<VariantType>{};
   container.push_back(false);
-  container.push_back("I am a string");
-  container.push_back("I am also a string");
+  container.push_back("I am a string"s);
+  container.push_back("I am also a string"s);
   container.push_back(13);
 
   container.pop_back();
@@ -21,8 +22,10 @@ TEST(HeterogenousContainerOfVariants, Modification) {
 
 TEST(HeterogenousContainerOfVariants, AccessingValue) {
 
+  using namespace std::string_literals;
+
   using VariantType = std::variant<int, std::string, bool>;
-  auto v = std::vector<VariantType>{42, "needle", true};
+  auto v = std::vector<VariantType>{42, "needle"s, true};
 
   for (const auto& item : v) {
     std::visit([](const auto& x) { std::cout << x << '\n'; }, item);
