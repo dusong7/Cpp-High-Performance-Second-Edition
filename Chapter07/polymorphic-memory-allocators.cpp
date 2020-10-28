@@ -1,4 +1,6 @@
-#if 0
+#include <version>
+
+#if defined(__cpp_lib_polymorphic_allocator)
 #include <array>
 #include <iostream>
 #include <memory_resource>
@@ -62,4 +64,5 @@ TEST(PolymorphicMemoryAllocators, CustomMemoryResource) {
   vec.emplace_back(1);
   vec.emplace_back(2);
 }
-#endif
+
+#endif // polymorphic_allocator
