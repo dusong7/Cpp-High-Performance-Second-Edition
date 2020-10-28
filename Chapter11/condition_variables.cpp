@@ -22,9 +22,11 @@ void print_ints() {
   while (i != sentinel) {
     {
       auto lock = std::unique_lock<std::mutex>{mtx};
-      while (q.empty())
+      while (q.empty()) {
         cv.wait(lock); // The lock is released while waiting
-
+      }
+      // An alternative approach using a predicate:
+      // cv.wait(lock, [] { return !q.empty(); });
       i = q.front();
       q.pop();
     }
