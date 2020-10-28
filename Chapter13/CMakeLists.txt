@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.12)
 project(Chapter13-Asynchronous_Programming_With_Coroutines)
 
 add_definitions(-DBOOST_ASIO_DISABLE_CONCEPTS)
+add_definitions(-DBOOST_DATE_TIME_NO_LIB)
+add_definitions(-DBOOST_REGEX_NO_LIB)
 include_directories(${Boost_INCLUDE_DIR})
 
 # Build test 

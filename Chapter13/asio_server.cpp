@@ -6,6 +6,7 @@
 #ifdef _MSC_VER
   #pragma warning(disable: 4499) // 'static' : an explicit specialization cannot have a storage class(ignored)
 #endif
+
 #include <boost/asio.hpp>
 #include <boost/asio/awaitable.hpp>
 #include <boost/asio/use_awaitable.hpp>
