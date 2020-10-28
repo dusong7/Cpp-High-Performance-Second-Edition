@@ -8,11 +8,8 @@
 
 #include <gtest/gtest.h>
 
-
-
 // Polymorphic memory allocators is a C++17 feature.
-// Clang doesn't support polymorphic memory allocators yet (mid 2020)
-
+// It's not supported by Clang libc++ yet.
 
 // Using pmr containers
 TEST(PolymorphicMemoryAllocators, MonotonicBuffer) {
@@ -22,10 +19,16 @@ TEST(PolymorphicMemoryAllocators, MonotonicBuffer) {
 
   auto unique_numbers = std::pmr::set<int>{&resource};
 
-  auto n = int{};
-  while (std::cin >> n) {
-    unique_numbers.insert(n);
-  }
+  // Avoid interactive tests
+  // auto n = int{};
+  // while (std::cin >> n) {
+  //   unique_numbers.insert(n);
+  // }
+  unique_numbers.insert(7);
+  unique_numbers.insert(3);
+  unique_numbers.insert(2);
+  unique_numbers.insert(7);
+  unique_numbers.insert(2);
 
   for (const auto& number : unique_numbers) {
     std::cout << number << '\n';
