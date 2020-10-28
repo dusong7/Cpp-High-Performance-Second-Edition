@@ -1,6 +1,9 @@
 #include "chapter_13.h"
 #ifdef SUPPORTS_COROUTINES
 
+#define BOOST_DATE_TIME_NO_LIB
+#define BOOST_REGEX_NO_LIB
+
 #include <boost/asio.hpp>
 #include <boost/asio/awaitable.hpp>
 #include <boost/asio/use_awaitable.hpp>
