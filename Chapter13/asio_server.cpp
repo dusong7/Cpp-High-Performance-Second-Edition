@@ -3,7 +3,9 @@
 
 #define BOOST_DATE_TIME_NO_LIB
 #define BOOST_REGEX_NO_LIB
-
+#ifdef _MSC_VER
+  #pragma warning(disable: 4499) // 'static' : an explicit specialization cannot have a storage class(ignored)
+#endif
 #include <boost/asio.hpp>
 #include <boost/asio/awaitable.hpp>
 #include <boost/asio/use_awaitable.hpp>
@@ -31,6 +33,7 @@ asio::awaitable<void> serve_client(tcp::socket socket) {
       timer.expires_from_now(100ms);
       co_await timer.async_wait(asio::use_awaitable);
     } catch (const std::exception& e) {
+      (void)(e);
       // Error or client disconnected
       break;
     }
