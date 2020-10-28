@@ -1,6 +1,6 @@
 #include <version>
 
-#if defined(__cpp_lib_polymorphic_allocator)
+#if defined(__cpp_lib_memory_resource)
 #include <array>
 #include <iostream>
 #include <memory_resource>
