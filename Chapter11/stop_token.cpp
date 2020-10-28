@@ -17,7 +17,7 @@ void print(std::stop_token stoken) {
 TEST(StopToken, BasicExample) {
   auto joinable_thread = std::jthread(print);
   std::cout << "main: goes to sleep\n";
-  std::this_thread::sleep_for(std::chrono::seconds{5});
+  std::this_thread::sleep_for(std::chrono::seconds{3});
   std::cout << "main: request jthread to stop\n";
   joinable_thread.request_stop();
 }

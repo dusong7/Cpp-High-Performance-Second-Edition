@@ -14,7 +14,7 @@ namespace {
 
 auto random_int(int min, int max) {
   // One engine instance per thread
-  thread_local static auto engine =
+  static thread_local auto engine =
       std::default_random_engine{std::random_device{}()};
 
   auto dist = std::uniform_int_distribution<>{min, max};
