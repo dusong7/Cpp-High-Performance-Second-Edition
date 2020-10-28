@@ -51,7 +51,7 @@ void CustomArguments(benchmark::internal::Benchmark* b) {
 
 BENCHMARK(bm_parallel)->Apply(CustomArguments)
      ->RangeMultiplier(10)
-     ->Range(1000, 10'000'000);
+     ->Range(10000, 10'000'000);
 BENCHMARK(bm_parallel_naive)->Apply(CustomArguments);
 
 BENCHMARK_MAIN();
