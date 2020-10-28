@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
 
-
 # Use hunter to download and build some third party dependencies
 include("cmake/HunterGate.cmake")
 
@@ -14,8 +13,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC") 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC") 
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /await")
 endif()
 
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") 
