@@ -13,7 +13,7 @@ namespace {
 // Naive vs std::transform()
 //
 
-auto setup_fixture(int n) {
+auto setup_fixture(size_t n) {
   auto src = std::vector<float>(n);
   std::iota(src.begin(), src.end(), 1.0f); // "src" goes from 1.0 to n
   auto dst = std::vector<float>(src.size());
