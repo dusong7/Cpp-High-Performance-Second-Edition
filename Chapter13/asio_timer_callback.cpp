@@ -1,5 +1,9 @@
 #include <gtest/gtest.h>
 
+
+#define BOOST_DATE_TIME_NO_LIB
+#define BOOST_REGEX_NO_LIB
+
 #include <boost/asio.hpp>
 #include <chrono>
 #include <iostream>
