@@ -8,7 +8,7 @@
 
 namespace {
 
-auto create_ints(int n) {
+auto create_ints(size_t n) {
   auto v = std::vector<int>(n);
   std::iota(v.begin(), v.end(), 0);
   return v;
