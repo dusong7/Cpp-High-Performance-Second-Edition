@@ -37,9 +37,9 @@ struct IsPrime {
   }
 };
 auto setup_fixture(int n) {
-  auto src = std::vector<float>(n);
-  std::iota(src.begin(), src.end(), 1.0f); // "src" goes from 1.0 to n
-  auto dst = std::vector<float>(src.size());
+  auto src = std::vector<unsigned>(n);
+  std::iota(src.begin(), src.end(), 1u); // "src" goes from 1.0 to n
+  auto dst = std::vector<unsigned>(src.size());
   return std::tuple{src, dst};
 }
 
