@@ -10,7 +10,8 @@ namespace {
 
 template <typename T> concept Reflectable = requires(T& t) { t.reflect(); };
 
-auto& operator<<(std::ostream& os, const Reflectable auto& v) {
+template <Reflectable R>
+auto& operator<<(std::ostream& os, const R& v) {
   tuple_for_each(v.reflect(), [&os](const auto& m) { os << m << " "; });
   return os;
 }
