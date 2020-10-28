@@ -1,8 +1,6 @@
 #include "chapter_13.h"
 #ifdef SUPPORTS_COROUTINES
 
-#define BOOST_DATE_TIME_NO_LIB
-#define BOOST_REGEX_NO_LIB
 #ifdef _MSC_VER
   #pragma warning(disable: 4499) // 'static' : an explicit specialization cannot have a storage class(ignored)
 #endif
