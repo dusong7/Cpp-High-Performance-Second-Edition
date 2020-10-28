@@ -6,7 +6,6 @@ file(GLOB BM_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
 foreach(CPP_FILE_PATH ${BM_SRC_FILES})
   get_filename_component(CPP_FILE ${CPP_FILE_PATH} NAME)
-#  cmake_path(GET ${CPP_FILE_PATH} FILENAME CPP_FILE)
   string(REPLACE ".cpp" "" EXE_NAME ${CPP_FILE})
   message(${EXE_NAME})
   add_executable(${EXE_NAME} ${CPP_FILE})
