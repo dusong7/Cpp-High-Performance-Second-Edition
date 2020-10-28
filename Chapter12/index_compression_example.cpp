@@ -37,7 +37,7 @@ auto gap_decode(Range& gaps) -> Generator<int> {
   }
 }
 
-autot vb_encode_num(int n) -> Generator<std::uint8_t> {
+auto vb_encode_num(int n) -> Generator<std::uint8_t> {
   for (auto cont = std::uint8_t{0}; cont == 0;) {
     auto b = static_cast<std::uint8_t>(n % 128);
     n = n / 128;
