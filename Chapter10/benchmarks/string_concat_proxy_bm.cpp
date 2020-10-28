@@ -11,12 +11,12 @@
 namespace {
 
 template <typename T> 
-auto create_strings(int n, int length) {
+auto create_strings(int n, size_t length) {
   auto re = std::default_random_engine{std::random_device{}()};
   auto random_string = [&] {
     auto d = std::uniform_int_distribution<>{'A', 'Z'};
     auto random_char = [&] { return static_cast<char>(d(re)); };
-    auto s = std::string(length, 0);
+    auto s = std::string(length, '\0');
     // std::ranges::generate(s, random_char); // Requires C++20
     std::generate(std::begin(s), std::end(s), random_char);
     return s;
