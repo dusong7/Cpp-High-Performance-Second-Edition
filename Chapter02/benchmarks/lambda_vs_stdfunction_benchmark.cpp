@@ -1,5 +1,6 @@
 #include <benchmark/benchmark.h>
 #include <vector>
+#include <functional>
 
 //
 // Remember to build using optimizations turned on!

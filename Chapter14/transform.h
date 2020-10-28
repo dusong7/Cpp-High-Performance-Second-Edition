@@ -19,7 +19,7 @@ template <typename SrcIt, typename DstIt, typename Func>
 auto par_transform_naive(SrcIt first, SrcIt last, DstIt dst, Func f) {
   auto n = static_cast<size_t>(std::distance(first, last));
   auto n_cores = size_t{std::thread::hardware_concurrency()};
-  auto n_tasks = std::max(n_cores, 1ul);
+  auto n_tasks = std::max(n_cores, size_t{1});
   auto chunk_sz = (n + n_tasks - 1) / n_tasks;
   auto futures = std::vector<std::future<void>>{};
   // Process each chunk on a separate task

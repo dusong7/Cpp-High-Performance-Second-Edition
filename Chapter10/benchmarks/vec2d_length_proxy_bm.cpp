@@ -7,6 +7,7 @@
 // #include <ranges> // Requires C++20
 #include <string>
 #include <vector>
+#include <iterator>
 
 
 namespace {
