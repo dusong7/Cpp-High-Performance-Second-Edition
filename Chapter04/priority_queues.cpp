@@ -10,6 +10,7 @@
 // This example demonstrates how to use a priority queue for
 // partially sorting a list which only provides forward iterators.
 //
+namespace {
 
 class Document {
 public:
@@ -61,6 +62,8 @@ auto generate_random_hit(const std::string& title) {
   hit.rank_ = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
   return hit;
 }
+
+} // namespace
 
 TEST(PriorityQueues, Top10Hits) {
   auto hits = std::forward_list<Hit>{};
