@@ -1,5 +1,7 @@
 #include <version>
-#if defined(__cpp_lib_execution) && defined(__cpp_lib_parallel_algorithm)
+#if defined(__cpp_lib_execution) && \
+    defined(__cpp_lib_parallel_algorithm) && \
+    defined(__cpp_lib_ranges)
 
 #include <gtest/gtest.h>
 
@@ -8,6 +10,8 @@
 #include <iostream>
 #include <numeric>
 #include <string>
+#include <ranges>
+
 
 namespace {
 
