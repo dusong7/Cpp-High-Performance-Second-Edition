@@ -17,11 +17,12 @@ private:
   T y_{};
 };
 
-auto dist(auto p1, auto p2) {
+template <typename T>
+auto dist(T p1, T p2) {
   auto a = p1.x() - p2.x();
   auto b = p1.y() - p2.y();
   return std::sqrt(a * a + b * b);
-}
+};
 
 } // namespace
 

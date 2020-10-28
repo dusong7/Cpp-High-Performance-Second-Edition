@@ -39,9 +39,17 @@ requires std::integral<T> auto mod(T v, T n) {
 }
 
 // Using concepts with abbreviated function templates
+// (Note that Visual Studio does not "auto" as function paramter at the time of writing this
+#ifndef _MSC_VER
 std::integral auto mod_abbreviated(std::integral auto v, std::integral auto n) {
   return v % n;
 }
+#else
+template <std::integral I>
+std::integral auto mod_abbreviated(I v, I n) {
+  return v % n;
+}
+#endif
 
 template <typename T>
 requires std::integral<T> struct Foo {
