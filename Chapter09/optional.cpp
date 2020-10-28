@@ -1,3 +1,7 @@
+#if _MSC_VER
+  #pragma warning(disable: 4834) // discarding return value of function with 'nodiscard' attribute
+#endif
+
 #include <cassert>
 #include <optional>
 #include <vector>
