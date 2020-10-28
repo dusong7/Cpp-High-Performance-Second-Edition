@@ -40,7 +40,7 @@ auto gen_vec(int s) {
 }
 
 static void bm_linear_search(benchmark::State& state) {
-  auto n = state.range(0);
+  auto n = static_cast<int>(state.range(0));
   auto v = gen_vec(n);
   for (auto _ : state) {
     benchmark::DoNotOptimize(linear_search(v, n));
@@ -49,7 +49,7 @@ static void bm_linear_search(benchmark::State& state) {
 }
 
 static void bm_binary_search(benchmark::State& state) {
-  auto n = state.range(0);
+  auto n = static_cast<int>(state.range(0));
   auto v = gen_vec(n);
   for (auto _ : state) {
     benchmark::DoNotOptimize(binary_search(v, n));
