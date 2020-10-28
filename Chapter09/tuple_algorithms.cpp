@@ -47,4 +47,5 @@ TEST(TupleAlgorithms, AnyOf) {
   auto contains_44 = tuple_any_of(tuple, [](const auto& v) {
     return v == 44;
   });
+  (void)(contains_44);
 }

@@ -40,7 +40,7 @@ auto safe_cast(const Src& v) -> Dst {
     return casted;
   } else if constexpr (is_number_to_number) {
     auto casted = static_cast<Dst>(v);
-    auto casted_back = static_cast<Src>(casted);
+    [[maybe_unused]] auto casted_back = static_cast<Src>(casted);
     assert(casted == casted_back);
     return casted;
   } else {
@@ -54,4 +54,5 @@ TEST(SageCast, FloatToInt) {
   auto x = safe_cast<int>(42.0f);
   // auto y = safe_cast<int*>(int16_t{42}); // Does not compile (unless you
   // are using a 16 bit computer :)
+  (void)(x);
 }

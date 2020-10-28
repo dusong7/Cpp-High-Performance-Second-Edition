@@ -4,7 +4,7 @@
 #include <type_traits>
 
 TEST(TypeTraits, Categories) {
-  auto same_type = std::is_same_v<uint8_t, unsigned char>;
+  [[maybe_unused]] auto same_type = std::is_same_v<uint8_t, unsigned char>;
   const auto is_float_or_double = std::is_floating_point_v<decltype(3.f)>;
 
   static_assert(is_float_or_double);
