@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
+
 # Use hunter to download and build some third party dependencies
 include("cmake/HunterGate.cmake")
 
