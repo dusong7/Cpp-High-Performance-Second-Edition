@@ -16,22 +16,20 @@ namespace {
 template <typename R, typename P>
 auto async_await(asio::io_context& ctx, std::chrono::duration<R, P> d) {
   struct Awaitable {
-    asio::system_timer t;
-    std::chrono::duration<R, P> d;
-    boost::system::error_code ec{};
+    asio::system_timer t_;
+    std::chrono::duration<R, P> d_;
+    boost::system::error_code ec_{};
 
-    bool await_ready() { return d.count() <= 0; }
+    bool await_ready() { return d_.count() <= 0; }
     void await_suspend(std::coroutine_handle<> h) {
-      t.expires_from_now(d);
-      t.async_wait([this, h](auto ec) mutable {
-        this->ec = ec;
+      t_.expires_from_now(d_);
+      t_.async_wait([this, h](auto e) mutable {
+        this->ec_ = e;
         h.resume();
       });
     }
     void await_resume() {
-      if (ec) {
-        throw boost::system::system_error(ec);
-      }
+      if (ec_) throw boost::system::system_error(ec_);
     }
   };
   return Awaitable{asio::system_timer{ctx}, d};

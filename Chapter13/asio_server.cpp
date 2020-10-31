@@ -17,7 +17,7 @@ namespace asio = boost::asio;
 
 using asio::ip::tcp;
 
-asio::awaitable<void> serve_client(tcp::socket socket) {
+auto serve_client(tcp::socket socket) -> asio::awaitable<void> {
   std::cout << "New client connected\n";
   auto ex = co_await asio::this_coro::executor;
   auto timer = asio::system_timer{ex};
@@ -31,8 +31,7 @@ asio::awaitable<void> serve_client(tcp::socket socket) {
       ++counter;
       timer.expires_from_now(100ms);
       co_await timer.async_wait(asio::use_awaitable);
-    } catch (const std::exception& e) {
-      (void)(e);
+    } catch (const std::exception&) {
       // Error or client disconnected
       break;
     }
