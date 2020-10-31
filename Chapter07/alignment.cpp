@@ -52,10 +52,20 @@ TEST(Alignment, CacheLine) {
 
 // new with alignment
 TEST(Alignment, AlignedNew) {
-  constexpr auto ps = std::size_t{4096}; // Page size
-  auto n = ps / sizeof(int);
-  auto* page = new (std::align_val_t{ps}) int[n];
-  // page is now a memory page full of ints
-  ASSERT_TRUE(is_aligned(page, ps));
-  delete[] page;
+
+  // The overloads:
+  // void* operator new(size_t isize, std::align_val_t al)
+  // void operator delete(void* p, std::align_val_t al) noexcept
+  // will be invoked when using new and delete here.
+
+  constexpr auto ps = std::size_t{4096};          // Page size
+
+  struct alignas(ps) Page {
+    std::byte data_[ps];
+  };  
+
+  auto* page = new Page{};                        // Memory page
+  ASSERT_TRUE(is_aligned(page, ps));              // True
+
+  delete page;
 }
