@@ -7,21 +7,21 @@
 #include <algorithm>
 #include <ranges>
 
-TEST(Sorting, SortRanges) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
-  std::ranges::sort(v);
 
+TEST(Sorting, SortRanges) {
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
+  std::ranges::sort(v);
   ASSERT_TRUE(std::ranges::is_sorted(v));
 }
 
 TEST(Sorting, NthElement) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
   auto it = v.begin() + v.size() / 2;
 
   std::nth_element(v.begin(), it, v.end());
 
   // it is the only sorted element
-  ASSERT_EQ(*it, 3);
+  ASSERT_EQ(*it, 4);
   // Max element in the left subrange
   auto left = *std::max_element(v.begin(), it);
   // Min element in the right subrange
@@ -30,7 +30,7 @@ TEST(Sorting, NthElement) {
 }
 
 TEST(Sorting, PartialSort) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
   auto it = v.begin() + v.size() / 2;
 
   std::partial_sort(v.begin(), it, v.end());
@@ -44,7 +44,7 @@ TEST(Sorting, PartialSort) {
 //
 
 TEST(Sorting, SortSpecificPartOfRange) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
   auto it = v.begin() + v.size() / 2;
   auto left = it - 1;
   auto right = it + 2;
@@ -55,7 +55,7 @@ TEST(Sorting, SortSpecificPartOfRange) {
 }
 
 TEST(Sorting, SortBackOfRange) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
   auto it = v.begin() + v.size() / 2;
   std::nth_element(v.begin(), it, v.end());
   std::sort(it, v.end());
@@ -64,7 +64,7 @@ TEST(Sorting, SortBackOfRange) {
 }
 
 TEST(Sorting, SortFrontAndBack) {
-  auto v = std::vector{5, 2, 1, 7, 3, 0, 4};
+  auto v = std::vector{6, 3, 2, 7, 4, 1, 5};
   auto it = v.begin() + v.size() / 2;
   auto left = it - 1;
   auto right = it + 2;

@@ -78,7 +78,7 @@ TEST(EverydayProblems, Sort) {
 //
 
 TEST(EverydayProblems, Find) {
-  auto col = std::list<int>{2, 4, 3, 2, 3, 1};
+  auto col = std::list{2, 4, 3, 2, 3, 1};
   auto it = std::ranges::find(col, 2);
   if (it != col.end()) {
     std::cout << *it << '\n';
@@ -152,7 +152,7 @@ TEST(EverydayProblems, AllOf) {
 
 TEST(EverydayProblems, AnyOf) {
 
-  const auto v = std::vector<int>{3, 2, 2, 1, 0, 2, 1};
+  const auto v = std::vector{3, 2, 2, 1, 0, 2, 1};
   auto is_negative = [](int i) { return i < 0; };
 
   if (std::ranges::any_of(v, is_negative)) {
@@ -165,13 +165,13 @@ TEST(EverydayProblems, AnyOf) {
 //
 
 TEST(EverydayProblems, Count) {
-  auto v = std::list<int>{3, 3, 2, 1, 3, 1, 3};
+  auto v = std::list{3, 3, 2, 1, 3, 1, 3};
   int n = std::ranges::count(v, 3);
   std::cout << n; // Output: 4
 }
 
 TEST(EverydayProblems, CountUsingEqualRangeAndSize) {
-  auto v = std::vector<int>{0, 2, 2, 3, 3, 4, 5};
+  auto v = std::vector{0, 2, 2, 3, 3, 4, 5};
   assert(std::ranges::is_sorted(v)); // O(n), but not called in release
   auto r = std::ranges::equal_range(v, 3);
   int n = std::ranges::size(r);
