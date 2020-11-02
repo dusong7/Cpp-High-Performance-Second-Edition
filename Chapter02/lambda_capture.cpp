@@ -41,7 +41,7 @@ TEST(LambdaCapture, CaptureByReference) {
 //
 // Initializating variables
 TEST(LambdaCapture, Initialization) {
-  auto func = [c = std::list<int>{4, 2}]() {
+  auto func = [c = std::list{4, 2}]() {
     for (auto v : c) {
       std::cout << v;
     }
