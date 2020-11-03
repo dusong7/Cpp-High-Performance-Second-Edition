@@ -23,7 +23,7 @@ auto coroutine_ref(const std::string& str) -> Resumable { // Warning! Reference
 auto coro_factory_ref() {
   auto str = std::string{"ABC"};
   auto res = coroutine_ref(str);
-  return std::move(res);
+  return res;
 }
 
 // OK: Pass string by value
@@ -34,7 +34,7 @@ auto coroutine(std::string str) -> Resumable { // OK, by value!
 auto coro_factory() {
   auto str = std::string{"ABC"};
   auto res = coroutine(str);
-  return std::move(res);
+  return res;
 }
 
 // Warning: Dangling reference to str!
@@ -81,7 +81,7 @@ struct Widget {
 auto widget_coro_factory() { // Create and return a coroutine
   auto w = Widget{};
   auto coro = w.coroutine();
-  return std::move(coro);
+  return coro;
 } // Warning: Object w destructs here
 
 } // namespace

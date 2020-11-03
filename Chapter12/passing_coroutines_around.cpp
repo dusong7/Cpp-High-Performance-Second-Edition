@@ -19,7 +19,7 @@ Resumable coroutine() { // Same as before
 
 auto coro_factory() { // Create and return a coroutine
   auto res = coroutine();
-  return std::move(res);
+  return res;
 }
 
 } // namespace
