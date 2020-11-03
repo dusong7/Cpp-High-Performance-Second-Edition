@@ -62,7 +62,7 @@ add_subdirectory("Chapter14/benchmarks")
 
 enable_testing()
 add_test(NAME Chapter01-A_Brief_Introduction_to_C++ COMMAND Chapter01-A_Brief_Introduction_to_C++)
-add_test(NAME Chapter02-Essential_CPP_Techniques COMMAND Chapter02-Essential_CPP_Techniques)
+add_test(NAME Chapter02-Essential_C++_Techniques COMMAND Chapter02-Essential_C++_Techniques)
 add_test(NAME Chapter03-Measuring_Performance COMMAND Chapter03-Measuring_Performance)
 add_test(NAME Chapter04-Data_Structures COMMAND Chapter04-Data_Structures)
 add_test(NAME Chapter05-Algorithms COMMAND Chapter05-Algorithms)
