@@ -21,7 +21,7 @@ struct ShortAlloc {
     return reinterpret_cast<T*>(arena_->allocate(n*sizeof(T)));
   }
   auto deallocate(T* p, size_t n) noexcept -> void {
-    arena_->deallocate(reinterpret_cast<char*>(p), n*sizeof(T));
+    arena_->deallocate(reinterpret_cast<std::byte*>(p), n*sizeof(T));
   }
   template <class U, size_t M>
   auto operator==(const ShortAlloc<U, M>& other) const noexcept {

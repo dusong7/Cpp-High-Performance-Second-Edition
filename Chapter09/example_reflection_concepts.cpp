@@ -8,7 +8,10 @@
 
 namespace {
 
-template <typename T> concept Reflectable = requires(T& t) { t.reflect(); };
+template <typename T>
+concept Reflectable = requires(T& t) {
+  t.reflect();
+};
 
 template <Reflectable R>
 auto& operator<<(std::ostream& os, const R& v) {

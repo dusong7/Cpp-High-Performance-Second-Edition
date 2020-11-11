@@ -93,13 +93,13 @@ auto decompress(Range& bytes) -> Generator<int> {
 }
 
 template <typename Range>
-void write(std::string path, Range& bytes) {
+void write(const std::string& path, Range& bytes) {
   auto out = std::ofstream{path, std::ios::out | std::ofstream::binary};
   std::ranges::copy(bytes.begin(), bytes.end(),
                     std::ostreambuf_iterator<char>(out));
 }
 
-auto read(std::string path) -> Generator<std::uint8_t> {
+auto read(const std::string& path) -> Generator<std::uint8_t> {
   auto in = std::ifstream{path, std::ios::in | std::ofstream::binary};
   auto it = std::istreambuf_iterator<char>{in};
   const auto end = std::istreambuf_iterator<char>{};

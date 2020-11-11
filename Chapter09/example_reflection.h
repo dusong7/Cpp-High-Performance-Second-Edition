@@ -25,6 +25,7 @@ void tuple_at(const Tuple& t, Func f) {
 
 template <typename Tuple, typename Func, size_t Index = 0>
 void tuple_for_each(const Tuple& t, const Func& f) {
+
   constexpr auto n = std::tuple_size_v<Tuple>;
   if constexpr (Index < n) {
     tuple_at<Index>(t, f);
