@@ -31,7 +31,7 @@ auto serve_client(tcp::socket socket) -> asio::awaitable<void> {
       ++counter;
       timer.expires_from_now(100ms);
       co_await timer.async_wait(asio::use_awaitable);
-    } catch (const std::exception&) {
+    } catch (...) {
       // Error or client disconnected
       break;
     }

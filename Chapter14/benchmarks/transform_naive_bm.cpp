@@ -19,7 +19,7 @@ auto setup_fixture(size_t n) {
   auto dst = std::vector<float>(src.size());
   auto transform_func = [](float v) {
     auto sum = v;
-    for (size_t i = 0; i < 500; ++i) {
+    for (auto i = 0; i < 500; ++i) {
       sum += (i * i * i * sum);
     }
     return sum;

@@ -24,7 +24,7 @@ auto par_count_if(It first, It last, Pred pred, size_t chunk_sz) {
 template <typename It, typename Pred>
 auto par_count_if(It first, It last, Pred pred) {
   auto n = static_cast<size_t>(std::distance(first, last));
-  auto n_cores = static_cast<size_t>(std::thread::hardware_concurrency());
+  auto n_cores = size_t{std::thread::hardware_concurrency()};
   auto chunk_sz = std::max(n / n_cores * 32, size_t{1000});
   return par_count_if(first, last, pred, chunk_sz);
 }

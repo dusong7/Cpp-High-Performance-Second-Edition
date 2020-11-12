@@ -20,7 +20,7 @@ auto setup_fixture(int n) {
   auto transform_function = [](float v) {
     auto sum = v;
     auto n = v / 20'000;             // The larger v is,
-    for (size_t i = 0; i < n; ++i) { // the more to compute
+    for (auto i = 0; i < n; ++i) { // the more to compute
       sum += (i * i * i * sum);
     }
     return sum;
