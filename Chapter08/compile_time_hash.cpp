@@ -19,9 +19,8 @@ class PrehashedString {
 public:
   template <size_t N>
   constexpr PrehashedString(const char (&str)[N])
-      : hash_{hash_function(&str[0])}, size_{N - 1}
-        // The subtraction is to avoid null at end
-        ,
+      : hash_{hash_function(&str[0])},
+        size_{N - 1}, // The subtraction is to avoid null at end
         strptr_{&str[0]} {}
   auto operator==(const PrehashedString& s) const {
 

@@ -1,5 +1,6 @@
 // No compiler support yet
 #include <version>
+
 #if defined(__cpp_lib_atomic_wait) && defined(__cpp_lib_atomic_flag_test)
 
 #include <gtest/gtest.h>
@@ -25,7 +26,7 @@ public:
 
 TEST(Atomics, SimpleSpinLock) {
 
-  constexpr auto n = 1000000;
+  constexpr auto n = 1'000'000;
   auto counter = 0; // Counter will be protected by mutex
   auto counter_mutex = SimpleMutex{};
 
