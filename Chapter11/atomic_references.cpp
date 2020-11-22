@@ -31,7 +31,7 @@ std::ostream& operator<<(std::ostream& os, const Stats& s) {
   return os;
 }
 
-void filp_coin(std::size_t n, Stats& outcomes) {
+void flip_coin(std::size_t n, Stats& outcomes) {
   auto flip = [&outcomes](auto n) {
     auto heads = std::atomic_ref<int>{outcomes.heads};
     auto tails = std::atomic_ref<int>{outcomes.tails};
@@ -45,7 +45,7 @@ void filp_coin(std::size_t n, Stats& outcomes) {
 
 TEST(Atomics, AtomicReferences) {
   auto stats = Stats{};
-  filp_coin(5000, stats); // Flip 5000 times
+  flip_coin(5000, stats); // Flip 5000 times
   std::cout << stats << '\n';
   ASSERT_EQ(5000, (stats.tails + stats.heads));
 }
