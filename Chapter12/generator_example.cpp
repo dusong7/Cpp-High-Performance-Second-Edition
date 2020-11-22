@@ -29,7 +29,7 @@ Generator<T> add(Generator<T>& gen, T adder) {
   }
 }
 
-TEST(GeneratorExamlpe, SeqTakeUntilAdd) {
+TEST(GeneratorExample, SeqTakeUntilAdd) {
   auto s = seq<int>();
   auto t = take_until<int>(s, 10);
   auto a = add<int>(t, 3);
@@ -40,5 +40,19 @@ TEST(GeneratorExamlpe, SeqTakeUntilAdd) {
   }
   ASSERT_EQ(75, sum);
 }
+
+
+
+// TEST(GeneratorExample, UseWithRanges) {
+
+// auto s = seq<int>();
+// auto t = take_until<int>(s, 10);
+// auto a = add<int>(t, 3);
+
+// auto v = std::vector{5, 6, 7};
+// auto is_included = std::ranges::includes(a, v);
+// ASSERT_TRUE(is_included);
+
+// }
 
 #endif // SUPPORTS_COROUTINES
