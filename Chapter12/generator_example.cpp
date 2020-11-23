@@ -41,18 +41,21 @@ TEST(GeneratorExample, SeqTakeUntilAdd) {
   ASSERT_EQ(75, sum);
 }
 
+#if defined(__cpp_lib_ranges)
+#include <ranges>
 
+TEST(GeneratorExample, CombineWithRangeAlgorithms) {
 
-// TEST(GeneratorExample, UseWithRanges) {
+  auto s = seq<int>(); 
+  auto t = take_until<int>(s, 10);
+  auto a = add<int>(t, 3);
+  const auto v = std::vector{5, 6, 7};
+  auto is_subrange = std::ranges::includes(a, v); // True
 
-// auto s = seq<int>();
-// auto t = take_until<int>(s, 10);
-// auto a = add<int>(t, 3);
+  ASSERT_TRUE(is_subrange);
+}
 
-// auto v = std::vector{5, 6, 7};
-// auto is_included = std::ranges::includes(a, v);
-// ASSERT_TRUE(is_included);
+#endif // __cpp_lib_ranges
 
-// }
 
 #endif // SUPPORTS_COROUTINES
