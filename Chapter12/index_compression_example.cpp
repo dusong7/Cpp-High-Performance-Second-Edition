@@ -99,7 +99,7 @@ void write(const std::string& path, Range& bytes) {
                     std::ostreambuf_iterator<char>(out));
 }
 
-auto read(const std::string& path) -> Generator<std::uint8_t> {
+auto read(std::string path) -> Generator<std::uint8_t> {
   auto in = std::ifstream{path, std::ios::in | std::ofstream::binary};
   auto it = std::istreambuf_iterator<char>{in};
   const auto end = std::istreambuf_iterator<char>{};
