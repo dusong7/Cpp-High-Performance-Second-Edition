@@ -11,7 +11,7 @@
 #include <ranges>
 #include <vector>
 
-void print(const auto& r) {
+void print(auto&& r) {
   std::ranges::for_each(r, [](auto&& i) { std::cout << i << ' '; });
 }
 
