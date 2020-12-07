@@ -4,7 +4,5 @@ project(Chapter07-Memory_Management)
 
 file(GLOB_RECURSE CHAPTER_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-infinite-recursion")
-
 add_executable(${PROJECT_NAME} ${CHAPTER_SRC_FILES})
 target_link_libraries(${PROJECT_NAME} GTest::gtest)
