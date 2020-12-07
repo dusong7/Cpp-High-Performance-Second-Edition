@@ -37,6 +37,8 @@ TEST(ConcatProxy, ConcatenateStrings) {
 
 
 TEST(ConcatProxy, Test) {
+  auto concat = String{"Cole"} + String{"Porter"};
+  auto is_cole_porter = concat == String{"ColePorter"};
   auto a = String{"Marc"};
   auto b = String{"Chagall"};
   auto c = String{"MarcChagall"};
